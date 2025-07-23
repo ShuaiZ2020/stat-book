@@ -1,0 +1,20 @@
+--- 
+title: "Biostatistical method with R code"
+author: "Shuai Zhu"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: ["reference.bib"]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::bs4_book,
+  set in the _output.yml file.
+biblio-style: apalike
+csl: chicago-fullnote-bibliography.csl
+---
+
+# 前言
+
+生物统计学方法R代码分享

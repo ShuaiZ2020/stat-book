@@ -1,0 +1,666 @@
+{
+    "sources": [
+        {
+            "DOI": "10.1016/j.vaccine.2017.09.014",
+            "ISSN": "0264-410X",
+            "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0264410X17312306",
+            "abstract": "Rotavirus is the most common cause of moderate-to-severe infant diarrhoea in developing countries, resulting in enormous morbidity, mortality, and economic burden. A bovine-human reassortant pentavalent rotavirus vaccine (BRV-PV) targeting the globally most common strains was developed in India and tested in a randomized, double-blind, placebo-controlled end-point driven Phase III efﬁcacy clinical trial implemented at six sites across India. Infants 6 to 8 weeks of age were randomized (1:1) to receive three oral doses of BRV-PV or placebo at 6, 10, and 14 weeks of age along with routine vaccines. Home visit surveillance was conducted to detect severe rotavirus gastroenteritis (SRVGE) and safety outcomes until the children reached two years of age. A total of 3749 infants received BRV-PV while 3751 received placebo. At the time of the primary end-point (when the minimum number of cases needed for analysis were accrued) the vaccine efﬁcacy against SRVGE was 36% (95% CI 11.7, 53.6, p = 0.0067) in the per protocol (PP) analysis, and 41.9% (95% CI 21.1, 57.3, p = 0.0005) in the intent to treat (ITT) analysis. Vaccine efﬁcacy over the entire follow-up period (until children reached two years of age) was 39.5% (95% CI 26.7, 50, p < 0.0001) in the PP analysis and 38.8% (95% CI, 26.4, 49, p < 0.0001) in the ITT analysis. Vaccine efﬁcacy against the very severe rotavirus cases (VSRVGE, Vesikari score 16) was 60.5% (95% CI 17.7, 81, p = 0.0131) at the time of the primary analysis and 54.7% (95% CI 29.7, 70.8, p = 0.0004) for the complete follow-period in the PP population. The incidence of solicited, unsolicited, and serious adverse events were similar in both the vaccine and placebo groups. Likewise, the number of intussusceptions and deaths were similar between both groups. Thus, BRV-PV is an effective, well tolerated and safe vaccine in Indian infants. (Trial registration: Clinical Trials.Gov [NCT 02133690] and Clinical Trial Registry of India [CTRI/2013/05/003667]).",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2025,
+                        7,
+                        21
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Kulkarni",
+                    "given": "Prasad S."
+                },
+                {
+                    "family": "Desai",
+                    "given": "Sajjad"
+                },
+                {
+                    "family": "Tewari",
+                    "given": "Tushar"
+                },
+                {
+                    "family": "Kawade",
+                    "given": "Anand"
+                },
+                {
+                    "family": "Goyal",
+                    "given": "Nidhi"
+                },
+                {
+                    "family": "Garg",
+                    "given": "Bishan Swarup"
+                },
+                {
+                    "family": "Kumar",
+                    "given": "Dinesh"
+                },
+                {
+                    "family": "Kanungo",
+                    "given": "Suman"
+                },
+                {
+                    "family": "Kamat",
+                    "given": "Veena"
+                },
+                {
+                    "family": "Kang",
+                    "given": "Gagandeep"
+                },
+                {
+                    "family": "Bavdekar",
+                    "given": "Ashish"
+                },
+                {
+                    "family": "Babji",
+                    "given": "Sudhir"
+                },
+                {
+                    "family": "Juvekar",
+                    "given": "Sanjay"
+                },
+                {
+                    "family": "Manna",
+                    "given": "Byomkesh"
+                },
+                {
+                    "family": "Dutta",
+                    "given": "Shanta"
+                },
+                {
+                    "family": "Angurana",
+                    "given": "Rama"
+                },
+                {
+                    "family": "Dewan",
+                    "given": "Deepika"
+                },
+                {
+                    "family": "Dharmadhikari",
+                    "given": "Abhijeet"
+                },
+                {
+                    "family": "Zade",
+                    "given": "Jagdish K."
+                },
+                {
+                    "family": "Dhere",
+                    "given": "Rajeev M."
+                },
+                {
+                    "family": "Fix",
+                    "given": "Alan"
+                },
+                {
+                    "family": "Power",
+                    "given": "Maureen"
+                },
+                {
+                    "family": "Uprety",
+                    "given": "Vidyasagar"
+                },
+                {
+                    "family": "Parulekar",
+                    "given": "Varsha"
+                },
+                {
+                    "family": "Cho",
+                    "given": "Iksung"
+                },
+                {
+                    "family": "Chandola",
+                    "given": "Temsunaro R."
+                },
+                {
+                    "family": "Kedia",
+                    "given": "Vikash K."
+                },
+                {
+                    "family": "Raut",
+                    "given": "Abhishek"
+                },
+                {
+                    "family": "Flores",
+                    "given": "Jorge"
+                },
+                {
+                    "family": "Shaikh",
+                    "given": "Hanif"
+                },
+                {
+                    "family": "Gupta",
+                    "given": "Lalit"
+                },
+                {
+                    "family": "Patil",
+                    "given": "Rakesh"
+                },
+                {
+                    "family": "Aslam",
+                    "given": "Mohd."
+                },
+                {
+                    "family": "Arya",
+                    "given": "Alok"
+                },
+                {
+                    "family": "Rafiqi",
+                    "given": "Farhana"
+                },
+                {
+                    "family": "Gupta",
+                    "given": "Subodh S."
+                },
+                {
+                    "family": "Maliye",
+                    "given": "Chetna H."
+                },
+                {
+                    "family": "Bahulekar",
+                    "given": "P. V."
+                },
+                {
+                    "family": "Bala",
+                    "given": "Kiran"
+                },
+                {
+                    "family": "Nazir Shora",
+                    "given": "Tajali"
+                },
+                {
+                    "family": "Hussain",
+                    "given": "Shahid"
+                },
+                {
+                    "family": "Kumar Bhattacharya",
+                    "given": "Mihir"
+                },
+                {
+                    "family": "Mukhopadhyay",
+                    "given": "Ashis K."
+                },
+                {
+                    "family": "Kumar Pal",
+                    "given": "Dilip"
+                },
+                {
+                    "family": "Saha",
+                    "given": "Jayanta"
+                },
+                {
+                    "family": "Shetty",
+                    "given": "Ranjitha S."
+                },
+                {
+                    "family": "Kulkarni",
+                    "given": "Muralidhar M."
+                },
+                {
+                    "family": "Raj",
+                    "given": "Chythra V."
+                }
+            ],
+            "container-title": "Vaccine",
+            "id": "kulkarni_randomized_2017",
+            "issue": "45",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017,
+                        10
+                    ]
+                ]
+            },
+            "note": "Publisher: Elsevier BV",
+            "page": "6228-6237",
+            "title": "A randomized Phase III clinical trial to assess the efficacy of a bovine-human reassortant pentavalent rotavirus vaccine in Indian infants",
+            "type": "article-journal",
+            "volume": "35"
+        },
+        {
+            "URL": "https://www.tandfonline.com/doi/pdf/10.1080/03610929808832160",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2025,
+                        7,
+                        21
+                    ]
+                ]
+            },
+            "id": "noauthor_exact_nodate",
+            "title": "Exact power and sample size for vaccine efficacy studies: Communications in Statistics - Theory and Methods: Vol 27 , No 6 - Get Access",
+            "title-short": "Exact power and sample size for vaccine efficacy studies",
+            "type": ""
+        },
+        {
+            "DOI": "10.1016/j.vaccine.2017.08.081",
+            "ISSN": "0264-410X",
+            "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0264410X17311817",
+            "abstract": "Background: A randomized, double-blind, placebo-controlled multicenter trial was conducted in healthy Chinese infants to assess the efﬁcacy and safety of a pentavalent live human-bovine reassortant rotavirus vaccine (RotaTeqTM, RV5) against rotavirus gastroenteritis (RVGE). Methods: 4040 participants aged 6–12 weeks were enrolled and randomly assigned to either 3 oral doses of RV5 (n = 2020) or placebo (n = 2020), administered 4 weeks apart. The participants also received OPV and DTaP in a concomitant or staggered fashion. The primary objective was to evaluate vaccine efﬁcacy (VE) against naturally-occurring RVGE at least 14 days following the third dose. Key secondary objectives included: VE against naturally-occurring severe RVGE and VE against severe and any-severity RVGE caused by rotavirus serotypes contained in the vaccine, occurring at least 14 days after the third dose. All adverse events (AEs) were collected for 30 days following each dose. Serious AEs (SAEs) and intussusception cases were collected during the entire study. (ClinicalTrials.gov registry: NCT02062385). Results: VE against RVGE of any-severity caused by any serotype was 69.3% (95% CI: 54.5, 79.7). The secondary efﬁcacy analysis showed an efﬁcacy of: 78.9% (95% CI: 59.1, 90.1) against severe RVGE caused by any serotype; 69.9% (95% CI: 55.2, 80.3) and 78.9% (95% CI: 59.1, 90.1) against any-severity and severe RVGE caused by serotypes contained in the vaccine, respectively. Within 30 days following any vaccination, 53.5% (1079/2015) and 53.3% (1077/2019) of participants reported at least one AE, and 5.8% (116/2015) and 5.7% (116/2019) reported SAEs in the vaccine and placebo groups, respectively. No SAEs were considered vaccine-related in recipients of RV5. Two intussusception cases were reported in recipients of RV5 who recovered after receiving treatment. Neither was considered vaccine-related. Conclusions: In Chinese infants, RV5 was efﬁcacious against any-severity and severe RVGE caused by any serotype and generally well-tolerated with respect to AEs.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2025,
+                        7,
+                        22
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Mo",
+                    "given": "Zhaojun"
+                },
+                {
+                    "family": "Mo",
+                    "given": "Yi"
+                },
+                {
+                    "family": "Li",
+                    "given": "Mingqiang"
+                },
+                {
+                    "family": "Tao",
+                    "given": "Junhui"
+                },
+                {
+                    "family": "Yang",
+                    "given": "Xu"
+                },
+                {
+                    "family": "Kong",
+                    "given": "Jilian"
+                },
+                {
+                    "family": "Wei",
+                    "given": "Dingkai"
+                },
+                {
+                    "family": "Fu",
+                    "given": "Botao"
+                },
+                {
+                    "family": "Liao",
+                    "given": "Xueyan"
+                },
+                {
+                    "family": "Chu",
+                    "given": "Jianli"
+                },
+                {
+                    "family": "Qiu",
+                    "given": "Yuanzheng"
+                },
+                {
+                    "family": "Hille",
+                    "given": "Darcy A."
+                },
+                {
+                    "family": "Nelson",
+                    "given": "Micki"
+                },
+                {
+                    "family": "Kaplan",
+                    "given": "Susan S."
+                }
+            ],
+            "container-title": "Vaccine",
+            "id": "mo_efficacy_2017",
+            "issue": "43",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017,
+                        10
+                    ]
+                ]
+            },
+            "note": "Publisher: Elsevier BV",
+            "page": "5897-5904",
+            "title": "Efficacy and safety of a pentavalent live human-bovine reassortant rotavirus vaccine (RV5) in healthy Chinese infants: A randomized, double-blind, placebo-controlled trial",
+            "title-short": "Efficacy and safety of a pentavalent live human-bovine reassortant rotavirus vaccine (RV5) in healthy Chinese infants",
+            "type": "article-journal",
+            "volume": "35"
+        },
+        {
+            "abstract": "The implementation of vaccines is one of the most profound advancements in the world of public health. While the scientific process underlying vaccine development is important, determining a vaccine’s efficacy and safety profile would not be possible without vaccine efficacy trials. In terms of trial design, sample size estimation is one of the essential considerations to be made, ensuring that the trial achieves the targeted power, minimizing chances of a false-negative finding.",
+            "author": [
+                {
+                    "family": "Loiacono",
+                    "given": "Matthew M"
+                }
+            ],
+            "id": "loiacono_sample_nodate",
+            "title": "SAMPLE SIZE ESTIMATION AND POWER CALCULATIONS FOR VACCINE EFFICACY TRIALS FOR EXCEEDINGLY RARE DISEASES",
+            "type": "article-journal"
+        },
+        {
+            "DOI": "10.1016/j.virs.2022.07.011",
+            "ISSN": "1674-0769",
+            "PMCID": "PMC9583109",
+            "PMID": "35926726",
+            "URL": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9583109/",
+            "abstract": "A randomized, double-blind, placebo-controlled multicenter trial was conducted in healthy Chinese infants to assess the efficacy and safety of a hexavalent live human-bovine reassortant rotavirus vaccine (HRV) against rotavirus gastroenteritis (RVGE). A total of 6400 participants aged 6–12 weeks were enrolled and randomly assigned to either HRV (n ​= ​3200) or placebo (n ​= ​3200) group. All the subjects received three oral doses of vaccine four weeks apart. The vaccine efficacy (VE) against RVGE caused by rotavirus serotypes contained in HRV was evaluated from 14 days after three doses of administration up until the end of the second rotavirus season. VE against severe RVGE, VE against RVGE hospitalization caused by serotypes contained in HRV, and VE against RVGE, severe RVGE, and RVGE hospitalization caused by natural infection of any serotype of rotavirus were also investigated. All adverse events (AEs) were collected for 30 days after each dose. Serious AEs (SAEs) and intussusception cases were collected during the entire study. Our data showed that VE against RVGE caused by serotypes contained in HRV was 69.21% (95%CI: 53.31–79.69). VE against severe RVGE and RVGE hospitalization caused by serotypes contained in HRV were 91.36% (95%CI: 78.45–96.53) and 89.21% (95%CI: 64.51–96.72) respectively. VE against RVGE, severe RVGE, and RVGE hospitalization caused by natural infection of any serotype of rotavirus were 62.88% (95%CI: 49.11–72.92), 85.51% (95%CI: 72.74–92.30) and 83.68% (95%CI: 61.34–93.11). Incidences of AEs from the first dose to one month post the third dose in HRV and placebo groups were comparable. There was no significant difference in incidences of SAEs in HRV and placebo groups. This study shows that this hexavalent reassortant rotavirus vaccine is an effective, well-tolerated, and safe vaccine for Chinese infants., •A multicenter, double-blind, phase III clinical trial for the efficacy and safety of hexavalent rotavirus vaccine (HRV).•The vaccine efficacy against rotavirus gastroenteritis caused by serotypes contained in HRV was 69.21%.•The efficacy against severe rotavirus gastroenteritis and hospitalization caused by serotypesin HRV were 91.36% and 89.21%.•No significant difference between the incidences of adverse events and severe adverse events in HRV and placebo group.•This hexavalent live human-bovine reassortant rotavirus vaccine iseffective, well tolerated and safe in Chinese infants.",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2025,
+                        7,
+                        22
+                    ]
+                ]
+            },
+            "author": [
+                {
+                    "family": "Wu",
+                    "given": "Zhiwei"
+                },
+                {
+                    "family": "Li",
+                    "given": "Qingliang"
+                },
+                {
+                    "family": "Liu",
+                    "given": "Yan"
+                },
+                {
+                    "family": "Lv",
+                    "given": "Huakun"
+                },
+                {
+                    "family": "Mo",
+                    "given": "Zhaojun"
+                },
+                {
+                    "family": "Li",
+                    "given": "Fangjun"
+                },
+                {
+                    "family": "Yu",
+                    "given": "Qingchuan"
+                },
+                {
+                    "family": "Jin",
+                    "given": "Fei"
+                },
+                {
+                    "family": "Chen",
+                    "given": "Wei"
+                },
+                {
+                    "family": "Zhang",
+                    "given": "Yong"
+                },
+                {
+                    "family": "Huang",
+                    "given": "Teng"
+                },
+                {
+                    "family": "Hu",
+                    "given": "Xiaosong"
+                },
+                {
+                    "family": "Xia",
+                    "given": "Wei"
+                },
+                {
+                    "family": "Gao",
+                    "given": "Jiamei"
+                },
+                {
+                    "family": "Zhou",
+                    "given": "Haisong"
+                },
+                {
+                    "family": "Bai",
+                    "given": "Xuan"
+                },
+                {
+                    "family": "Liu",
+                    "given": "Yueyue"
+                },
+                {
+                    "family": "Liang",
+                    "given": "Zhenzhen"
+                },
+                {
+                    "family": "Jiang",
+                    "given": "Zhijun"
+                },
+                {
+                    "family": "Chen",
+                    "given": "Yingping"
+                },
+                {
+                    "family": "Zhang",
+                    "given": "Jiuwei"
+                },
+                {
+                    "family": "Du",
+                    "given": "Jialiang"
+                },
+                {
+                    "family": "Yang",
+                    "given": "Biao"
+                },
+                {
+                    "family": "Xing",
+                    "given": "Bo"
+                },
+                {
+                    "family": "Xing",
+                    "given": "Yantao"
+                },
+                {
+                    "family": "Dong",
+                    "given": "Ben"
+                },
+                {
+                    "family": "Yang",
+                    "given": "Qinghai"
+                },
+                {
+                    "family": "Shi",
+                    "given": "Chen"
+                },
+                {
+                    "family": "Yan",
+                    "given": "Tingdong"
+                },
+                {
+                    "family": "Ruan",
+                    "given": "Bo"
+                },
+                {
+                    "family": "Shi",
+                    "given": "Haiyun"
+                },
+                {
+                    "family": "Fan",
+                    "given": "Xingliang"
+                },
+                {
+                    "family": "Feng",
+                    "given": "Dongyang"
+                },
+                {
+                    "family": "Lv",
+                    "given": "Weigang"
+                },
+                {
+                    "family": "Zhang",
+                    "given": "Dong"
+                },
+                {
+                    "family": "Kong",
+                    "given": "Xiangchu"
+                },
+                {
+                    "family": "Zhou",
+                    "given": "Liuyifan"
+                },
+                {
+                    "family": "Que",
+                    "given": "Dinghong"
+                },
+                {
+                    "family": "Chen",
+                    "given": "Hong"
+                },
+                {
+                    "family": "Chen",
+                    "given": "Zhongbing"
+                },
+                {
+                    "family": "Guo",
+                    "given": "Xiang"
+                },
+                {
+                    "family": "Zhou",
+                    "given": "Weiwei"
+                },
+                {
+                    "family": "Wu",
+                    "given": "Cong"
+                },
+                {
+                    "family": "Zhou",
+                    "given": "Qingrong"
+                },
+                {
+                    "family": "Liu",
+                    "given": "Yuqing"
+                },
+                {
+                    "family": "Qiao",
+                    "given": "Jian"
+                },
+                {
+                    "family": "Wang",
+                    "given": "Ying"
+                },
+                {
+                    "family": "Li",
+                    "given": "Xinguo"
+                },
+                {
+                    "family": "Duan",
+                    "given": "Kai"
+                },
+                {
+                    "family": "Zhao",
+                    "given": "Yuliang"
+                },
+                {
+                    "family": "Xu",
+                    "given": "Gelin"
+                },
+                {
+                    "family": "Yang",
+                    "given": "Xiaoming"
+                }
+            ],
+            "container-title": "Virologica Sinica",
+            "id": "wu_efficacy_2022",
+            "issue": "5",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022,
+                        8
+                    ]
+                ]
+            },
+            "page": "724-730",
+            "title": "Efficacy, safety and immunogenicity of hexavalent rotavirus vaccine in Chinese infants",
+            "type": "article-journal",
+            "volume": "37"
+        },
+        {
+            "URL": "https://pubmed.ncbi.nlm.nih.gov/35926726/",
+            "accessed": {
+                "date-parts": [
+                    [
+                        2025,
+                        7,
+                        22
+                    ]
+                ]
+            },
+            "id": "noauthor_efficacy_nodate",
+            "title": "Efficacy, safety and immunogenicity of hexavalent rotavirus vaccine in Chinese infants - PubMed",
+            "type": ""
+        },
+        {
+            "URL": "https://dplyr.tidyverse.org",
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "François",
+                    "given": "Romain"
+                },
+                {
+                    "family": "Henry",
+                    "given": "Lionel"
+                },
+                {
+                    "family": "Müller",
+                    "given": "Kirill"
+                },
+                {
+                    "family": "Vaughan",
+                    "given": "Davis"
+                }
+            ],
+            "id": "R-dplyr",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "note": "R package version 1.1.4",
+            "title": "Dplyr: A grammar of data manipulation",
+            "title-short": "Dplyr",
+            "type": "book"
+        },
+        {
+            "URL": "http://haozhu233.github.io/kableExtra/",
+            "author": [
+                {
+                    "family": "Zhu",
+                    "given": "Hao"
+                }
+            ],
+            "id": "R-kableExtra",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024
+                    ]
+                ]
+            },
+            "note": "R package version 1.4.0",
+            "title": "kableExtra: Construct complex table with kable and pipe syntax",
+            "title-short": "kableExtra",
+            "type": "book"
+        }
+    ],
+    "project_biblios": [
+        "reference/01-ect sample size.bib",
+        "reference/packages.bib"
+    ]
+}
