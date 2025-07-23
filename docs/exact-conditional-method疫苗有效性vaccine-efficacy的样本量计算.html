@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 2 Exact Conditional Method疫苗有效性(Vaccine Efficacy)的样本量计算 | Biostatistical method with R code</title>
-<meta name="author" content="Shuai Zhu">
+<title>Chapter 2 Exact Conditional Method疫苗有效性(Vaccine Efficacy)的样本量计算 | 临床实验生物统计学方法R语言实例</title>
+<meta name="author" content="朱帅">
 <meta name="description" content="我们首先导入后面会用到的包，后续会用到dplyr的%&gt;%管道函数和kableExtra输出表格。 library(dplyr) library(kableExtra)  2.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。让\(P_1\),...">
 <meta name="generator" content="bookdown 0.43 with bs4_book()">
-<meta property="og:title" content="Chapter 2 Exact Conditional Method疫苗有效性(Vaccine Efficacy)的样本量计算 | Biostatistical method with R code">
+<meta property="og:title" content="Chapter 2 Exact Conditional Method疫苗有效性(Vaccine Efficacy)的样本量计算 | 临床实验生物统计学方法R语言实例">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://shuaiz2020.github.io/stat-book/exact-conditional-method疫苗有效性vaccine-efficacy的样本量计算.html">
 <meta property="og:description" content="我们首先导入后面会用到的包，后续会用到dplyr的%&gt;%管道函数和kableExtra输出表格。 library(dplyr) library(kableExtra)  2.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。让\(P_1\),...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 2 Exact Conditional Method疫苗有效性(Vaccine Efficacy)的样本量计算 | Biostatistical method with R code">
+<meta name="twitter:title" content="Chapter 2 Exact Conditional Method疫苗有效性(Vaccine Efficacy)的样本量计算 | 临床实验生物统计学方法R语言实例">
 <meta name="twitter:description" content="我们首先导入后面会用到的包，后续会用到dplyr的%&gt;%管道函数和kableExtra输出表格。 library(dplyr) library(kableExtra)  2.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。让\(P_1\),...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Biostatistical method with R code</a>
+        <a href="index.html" title="">临床实验生物统计学方法R语言实例</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -103,7 +103,7 @@
 也就是<span class="math inline">\(X \overset{i.i.d}{\sim}\text{Poisson}(\lambda_1)\)</span>, <span class="math inline">\(Y \overset{i.i.d}{\sim}\text{Poisson}(\lambda_2)\)</span> with <span class="math inline">\(\lambda_1 = N_1\cdot P_1, \lambda_2 = N_2\cdot P_2\)</span>.</p>
 <p><span class="math inline">\(Y\)</span>给定<span class="math inline">\(T\)</span>的条件概率分布为
 <span class="math display" id="eq:ycondt">\[\begin{equation}
-  Y|T \sim \text{Binomial}(T, \theta)=\binom{T}{k} \theta^k(1-\theta)^{T-k}$ with $T = X + Y, \theta = \frac{\lambda_1}{\lambda_1=\lambda_2}$
+  Y|T \sim \text{Binomial}(T, \theta)=\binom{T}{k} \theta^k(1-\theta)^{T-k}$ with $T = X + Y, \theta = \frac{\lambda_1}{\lambda_1=\lambda_2}
   \tag{2.3}
 \end{equation}\]</span>
 此时原假设和备择假设为：</p>
@@ -589,8 +589,8 @@ Wu, Zhiwei, Qingliang Li, Yan Liu, et al. <span>“Efficacy, Safety and Immunoge
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/ShuaiZ2020/stat-book/blob/master/01-Exact-Conditional-Method-Sample-Size-Calculation.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/ShuaiZ2020/stat-book/edit/master/01-Exact-Conditional-Method-Sample-Size-Calculation.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/ShuaiZ2020/stat-book/blob/master/01-ECM.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/ShuaiZ2020/stat-book/edit/master/01-ECM.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -602,7 +602,7 @@ Wu, Zhiwei, Qingliang Li, Yan Liu, et al. <span>“Efficacy, Safety and Immunoge
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Biostatistical method with R code</strong>" was written by Shuai Zhu. It was last built on 2025-07-23.</p>
+    <p>"<strong>临床实验生物统计学方法R语言实例</strong>" was written by 朱帅. It was last built on 2025-07-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

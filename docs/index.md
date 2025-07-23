@@ -1,6 +1,6 @@
 --- 
-title: "Biostatistical method with R code"
-author: "Shuai Zhu"
+title: "临床实验生物统计学方法R语言实例"
+author: "朱帅"
 date: "2025-07-23"
 site: bookdown::bookdown_site
 documentclass: book

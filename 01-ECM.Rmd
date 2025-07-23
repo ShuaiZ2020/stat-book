@@ -29,7 +29,7 @@ library(kableExtra)
 
 $Y$给定$T$的条件概率分布为 
 \begin{equation}
-  Y|T \sim \text{Binomial}(T, \theta)=\binom{T}{k} \theta^k(1-\theta)^{T-k}$ with $T = X + Y, \theta = \frac{\lambda_1}{\lambda_1=\lambda_2}$
+  Y|T \sim \text{Binomial}(T, \theta)=\binom{T}{k} \theta^k(1-\theta)^{T-k}$ with $T = X + Y, \theta = \frac{\lambda_1}{\lambda_1=\lambda_2}
   (\#eq:ycondt)
 \end{equation} 
 此时原假设和备择假设为：
