@@ -1,7 +1,7 @@
 --- 
 title: "Biostatistical method with R code"
 author: "Shuai Zhu"
-date: "`r Sys.Date()`"
+date: "2025-07-23"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: ["reference.bib"]
@@ -13,6 +13,7 @@ description: |
   set in the _output.yml file.
 biblio-style: apalike
 csl: chicago-fullnote-bibliography.csl
+
 ---
 
 # 前言

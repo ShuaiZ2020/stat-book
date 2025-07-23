@@ -226,22 +226,6 @@
             "volume": "35"
         },
         {
-            "URL": "https://www.tandfonline.com/doi/pdf/10.1080/03610929808832160",
-            "accessed": {
-                "date-parts": [
-                    [
-                        2025,
-                        7,
-                        21
-                    ]
-                ]
-            },
-            "id": "noauthor_exact_nodate",
-            "title": "Exact power and sample size for vaccine efficacy studies: Communications in Statistics - Theory and Methods: Vol 27 , No 6 - Get Access",
-            "title-short": "Exact power and sample size for vaccine efficacy studies",
-            "type": ""
-        },
-        {
             "DOI": "10.1016/j.vaccine.2017.08.081",
             "ISSN": "0264-410X",
             "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0264410X17311817",
@@ -586,81 +570,35 @@
             "volume": "37"
         },
         {
-            "URL": "https://pubmed.ncbi.nlm.nih.gov/35926726/",
-            "accessed": {
-                "date-parts": [
-                    [
-                        2025,
-                        7,
-                        22
-                    ]
-                ]
-            },
-            "id": "noauthor_efficacy_nodate",
-            "title": "Efficacy, safety and immunogenicity of hexavalent rotavirus vaccine in Chinese infants - PubMed",
-            "type": ""
-        },
-        {
-            "URL": "https://dplyr.tidyverse.org",
+            "DOI": "10.1080/03610929808832160",
+            "ISSN": "1532-415X",
             "author": [
                 {
-                    "family": "Wickham",
-                    "given": "Hadley"
+                    "family": "Chan",
+                    "given": "Ivan S. F."
                 },
                 {
-                    "family": "François",
-                    "given": "Romain"
-                },
-                {
-                    "family": "Henry",
-                    "given": "Lionel"
-                },
-                {
-                    "family": "Müller",
-                    "given": "Kirill"
-                },
-                {
-                    "family": "Vaughan",
-                    "given": "Davis"
+                    "family": "Bohidar",
+                    "given": "Norman R."
                 }
             ],
-            "id": "R-dplyr",
+            "container-title": "Communications in Statistics - Theory and Methods",
+            "id": "chan_exact_1998",
+            "issue": "6",
             "issued": {
                 "date-parts": [
                     [
-                        2023
+                        1998
                     ]
                 ]
             },
-            "note": "R package version 1.1.4",
-            "title": "Dplyr: A grammar of data manipulation",
-            "title-short": "Dplyr",
-            "type": "book"
-        },
-        {
-            "URL": "http://haozhu233.github.io/kableExtra/",
-            "author": [
-                {
-                    "family": "Zhu",
-                    "given": "Hao"
-                }
-            ],
-            "id": "R-kableExtra",
-            "issued": {
-                "date-parts": [
-                    [
-                        2024
-                    ]
-                ]
-            },
-            "note": "R package version 1.4.0",
-            "title": "kableExtra: Construct complex table with kable and pipe syntax",
-            "title-short": "kableExtra",
-            "type": "book"
+            "page": "1305-1322",
+            "title": "Exact power and sample size for vaccine efficacy studies",
+            "type": "article-journal",
+            "volume": "27"
         }
     ],
     "project_biblios": [
-        "reference/01-ect sample size.bib",
-        "reference/packages.bib"
+        "reference.bib"
     ]
 }
