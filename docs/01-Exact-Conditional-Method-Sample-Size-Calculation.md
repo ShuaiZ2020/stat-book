@@ -1,4 +1,4 @@
-# 疫苗有效性(Vaccine Efficacy)的样本量计算
+# Exact Conditional Method疫苗有效性(Vaccine Efficacy)的样本量计算
 
 我们首先导入后面会用到的包，后续会用到dplyr的%>%管道函数和kableExtra输出表格。
 
