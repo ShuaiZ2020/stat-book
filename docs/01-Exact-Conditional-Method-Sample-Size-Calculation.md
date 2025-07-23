@@ -10,16 +10,14 @@ library(kableExtra)
 
 ## 疫苗有效性(Vaccine Efficacy)
 
-- 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性$\pi$(Vaccine Efficacy)这个指标。
+当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性$\pi$(Vaccine Efficacy)这个指标。让$P_1$, $P_2$分别为安慰剂组和接种疫苗组的发病率；$N_1$, $N_2$分别为安慰剂组和接种疫苗组的群体总数；$X, Y$分别为安慰剂和疫苗组的病例人数。则$X \overset{i.i.d}{\sim}\text{Binomial}(N_1, P_1)$, $Y \overset{i.i.d}{\sim}\text{Binomial}(N_2, P_2)$。 
 
-- 让$P_1$, $P_2$分别为安慰剂组和接种疫苗组的发病率；$N_1$, $N_2$分别为安慰剂组和接种疫苗组的群体总数；$X, Y$分别为安慰剂和疫苗组的病例人数。则$X \overset{i.i.d}{\sim}\text{Binomial}(N_1, P_1)$, $Y \overset{i.i.d}{\sim}\text{Binomial}(N_2, P_2)$。 
-
-- 疫苗有效性可以可以用可以被写成：
+疫苗有效性为：
 \begin{equation} 
   \pi = 1-(P_2/P_1)
   (\#eq:pi)
 \end{equation} 
-- 原假设和备择假设可以写成
+原假设和备择假设为：
 
 \begin{equation} 
   H_0: \pi \leq \pi_0 \text{ versus } \ H_1:\pi>\pi_0   
@@ -27,16 +25,15 @@ library(kableExtra)
 \end{equation} 
 
 
+如果一个疾病发病率较低，我们就需要更多受试者参加实验，在这种情况下$X, Y$可以被近似成为独立的泊松分布，
+也就是$X \overset{i.i.d}{\sim}\text{Poisson}(\lambda_1)$, $Y \overset{i.i.d}{\sim}\text{Poisson}(\lambda_2)$ with $\lambda_1 = N_1\cdot P_1, \lambda_2 = N_2\cdot P_2$. 
 
-## 基于泊松假设的大样本
-
-- 如果一个疾病发病率较低，我们就需要更多受试者参加实验，在这种情况下$X, Y$可以被近似成为独立的泊松分布. 
-
-- $X \overset{i.i.d}{\sim}\text{Poisson}(\lambda_1)$, $Y \overset{i.i.d}{\sim}\text{Poisson}(\lambda_2)$ with $\lambda_1 = N_1\cdot P_1, \lambda_2 = N_2\cdot P_2$. 
-- $Y$的条件概率分布可以被写成 
-$Y|T \sim \text{Binomial}(T, \theta)=\binom{T}{k} \theta^k(1-\theta)^{T-k}$ with $T = X + Y, \theta = \frac{\lambda_1}{\lambda_1=\lambda_2}$
-
-- 此时原假设和备择假设可以写成
+$Y$给定$T$的条件概率分布为 
+\begin{equation}
+  Y|T \sim \text{Binomial}(T, \theta)=\binom{T}{k} \theta^k(1-\theta)^{T-k}$ with $T = X + Y, \theta = \frac{\lambda_1}{\lambda_1=\lambda_2}$
+  (\#eq:ycondt)
+\end{equation} 
+此时原假设和备择假设为：
 
 \begin{equation} 
   H_0: \theta \geq \theta_0 \text{ versus } \ H_1:\theta<\theta_0 \text{ where } \theta_0 = \frac{1-\pi_0}{2-\pi_0}
@@ -44,25 +41,28 @@ $Y|T \sim \text{Binomial}(T, \theta)=\binom{T}{k} \theta^k(1-\theta)^{T-k}$ with
 \end{equation} 
 
 
-- P value 可以被计算为
+- 计算的P value 公式为
 \begin{equation} 
   p = \Pr[Y \leq Y_{\text{obs}} \mid Y \sim \text{Binomial}(T, \theta_0)] = \sum_{k=0}^{Y_{\text{obs}}} \binom{T}{k} \theta_0^k (1 - \theta_0)^{T - k}
   (\#eq:pvalue)
 \end{equation} 
  
-- Statistical power 可以被计算为
+- 计算Statistical power公式为
 \begin{equation} 
   1 - \beta = \Pr[Y \leq Y_c \mid Y \sim \text{Binomial}(T, \theta_1)] = \sum_{k=0}^{Y_c} \binom{T}{k} \theta_1^k (1 - \theta_1)^{T - k}
   (\#eq:power)
 \end{equation} 
 
-- 临床实验所需样本量可以被计算为
+- 计算临床实验所需样本量公式为
 \begin{equation} 
   N_2 = T/[(2-\pi_1)/P_1]
   (\#eq:n2)
 \end{equation} 
 
-- 计算样本量所需的变量为$\pi_0, \pi_1, \alpha$, 期望统计功效(1-$\beta$)和安慰剂组发病率($P_1$)。
+计算样本量所需的变量为$\pi_0, \pi_1, \alpha$, 期望统计功效(1-$\beta$)和安慰剂组发病率($P_1$)。
+
+详细推导过程可以看 @chan_exact_1998 和 @loiacono_sample_nodate
+
 
 ## R代码示例
 
@@ -109,10 +109,9 @@ T2N <- function(T_value, incidence, pi1, dropout_rate){
 
 ```
 
-详细推导过程可以看 @chan_exact_1998 和 @loiacono_sample_nodate
 
 ### 例1
-@chan_exact_1998 这篇论文介绍了exact conditional method的公式推导。他还给了一个不同样本量对应的power和significance level。 我们可以运行上面的函数来验证结果的准确性。设置病例范围从33到40，$\pi_0=0.2,\pi_1=0.8, P_1=0.006, \alpha=0.025$, 期望统计功效为95%。输入以上参数到ect_sample_size这个函数。
+@chan_exact_1998 在其论文中详细阐述了exact conditional方法的理论推导，并提供了不同样本量下统计功效（power）与显著性水平（significance level）的对应表格。为验证该方法的计算准确性，我们可以调用`ect_sample_size()`函数进行实证分析。具体参数设置：病例范围33到40，$\pi_0=0.2,\pi_1=0.8, P_1=0.006, \alpha=0.025$, 目标统计功效为95%。将这些参数输入函数后，即可获得相应的样本量估计结果。
 
 <img src="image/Screenshot 2025-07-21 155606.png" width="334" />
 
@@ -197,7 +196,12 @@ kbl(res1$T_table)%>%
 res1$T
 #> [1] 37
 ```
-打印出T=37与论文一致，再用公式\@ref(eq:n2)计算出疫苗组样本量，为了方便计算我也写成了函数t2n。此示例计算样本量时没有考虑脱落所以dropout_rate 参数可以设置为0。得到结果样本量至少为5138.889。这个结果乘2就是疫苗组和安慰剂组所需的总样本量，总样本量至少为10277.78，进一10278。此结果与论文一致，证明我们的算法无误。
+打印结果显示 **T = 37**，与论文中的结果一致。接下来，利用公式 `\@ref(eq:n2)` 计算疫苗组所需的样本量。为了方便重复使用，我将该计算过程封装成了函数 `T2N()`。
+
+在本示例中，未考虑受试者脱落情况，因此将 `dropout_rate` 参数设为 `0`。计算结果显示，疫苗组的样本量应不少于 **5138.889**。将该值乘以 2，即可得出疫苗组与安慰剂组的总样本量应不少于 **10277.78**，四舍五入后为 **10278**。
+
+该结果与论文完全一致，说明我们的算法实现是正确的。
+。
 
 ``` r
 T2N(37, incidence, pi1, dropout_rate = 0)
@@ -207,10 +211,16 @@ T2N(37, incidence, pi1, dropout_rate = 0)
 ### HRV-三期
 <img src="image/Screenshot 2025-07-22 173413.png" width="284" />
 
-@wu_efficacy_2022 这篇论文原为我们想要复现的样本量。但是过程中发现其中并未明确提及所需参数 $\pi_1, \alpha$和期望统计功效。无法计算出样本量所以后续我们使用这篇论文作为参考。下一个示例为HRV-三期这篇论文的参考文献，也是rotavirus vaccine的疫苗有效性临床实验。
+@wu_efficacy_2022 这篇论文原本是我们希望复现样本量计算的参考文献。然而在复现过程中发现，文中并未明确给出所需的关键参数 $\pi_1$、$\alpha$ 以及期望的统计功效，因此无法准确计算所需样本量。因此，我们决定后续不再以该论文作为参考。
+
+接下来的示例将以 HRV-三期这篇论文的参考文献为依据，该研究同样是关于轮状病毒（rotavirus）疫苗有效性的临床试验。
+
 
 ### RV5 
-@mo_efficacy_2017 这篇论文会作为我们后续疫苗有效性检验样本量计算的参考文章。提供参数：15%脱落率， $\pi_0=0, \pi_1=0.6, P_1 = 0.02, \alpha = 0.025$，期望统计功效为80%。带入以上参数可以得到病例总数至少为47，我们取双数48。再用T2N函数计算疫苗组样本量总数至少2016.807，我们取整为2020，与论文一致。
+@mo_efficacy_2017 这篇论文将作为我们后续进行疫苗有效性检验样本量计算的参考文献。文中提供了以下参数：15% 的脱落率，\(\pi_0 = 0\)、\(\pi_1 = 0.6\)、\(P_1 = 0.02\)、显著性水平 \(\alpha = 0.025\)，以及期望的统计功效为 80%。
+
+代入上述参数后，可得所需的最小病例数为 47。为了方便分组，我们取双数为 48。接着，使用 `T2N()` 函数计算疫苗组所需的样本量，结果为至少 2016.807，向上取整后为 2020。该样本量结果与论文中的报告一致，验证了我们算法的正确性。
+
 
 
 <img src="image/Screenshot 2025-07-21 162616.png" width="328" />
@@ -320,7 +330,7 @@ T2N(48, incidence, pi1, dropout_rate = 0.15)
 #> The sample of vaccine group considering the drop out rate: 2016.807
 ```
 
-## Reference{-}
+## Reference
 
 
 

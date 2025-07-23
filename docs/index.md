@@ -5,7 +5,7 @@ date: "2025-07-23"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: ["reference.bib"]
-# url: your book url like https://bookdown.org/yihui/bookdown
+url: https://shuaiz2020.github.io/stat-book
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
   This is a minimal example of using the bookdown package to write a book.

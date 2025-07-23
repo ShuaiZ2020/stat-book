@@ -6,14 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 2 Exact Conditional Method疫苗有效性(Vaccine Efficacy)的样本量计算 | Biostatistical method with R code</title>
 <meta name="author" content="Shuai Zhu">
-<meta name="description" content="我们首先导入后面会用到的包，后续会用到dplyr的%&gt;%管道函数和kableExtra输出表格。 library(dplyr) library(kableExtra)  2.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。 让\(P_1\),...">
+<meta name="description" content="我们首先导入后面会用到的包，后续会用到dplyr的%&gt;%管道函数和kableExtra输出表格。 library(dplyr) library(kableExtra)  2.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。让\(P_1\),...">
 <meta name="generator" content="bookdown 0.43 with bs4_book()">
 <meta property="og:title" content="Chapter 2 Exact Conditional Method疫苗有效性(Vaccine Efficacy)的样本量计算 | Biostatistical method with R code">
 <meta property="og:type" content="book">
-<meta property="og:description" content="我们首先导入后面会用到的包，后续会用到dplyr的%&gt;%管道函数和kableExtra输出表格。 library(dplyr) library(kableExtra)  2.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。 让\(P_1\),...">
+<meta property="og:url" content="https://shuaiz2020.github.io/stat-book/exact-conditional-method疫苗有效性vaccine-efficacy的样本量计算.html">
+<meta property="og:description" content="我们首先导入后面会用到的包，后续会用到dplyr的%&gt;%管道函数和kableExtra输出表格。 library(dplyr) library(kableExtra)  2.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。让\(P_1\),...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 2 Exact Conditional Method疫苗有效性(Vaccine Efficacy)的样本量计算 | Biostatistical method with R code">
-<meta name="twitter:description" content="我们首先导入后面会用到的包，后续会用到dplyr的%&gt;%管道函数和kableExtra输出表格。 library(dplyr) library(kableExtra)  2.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。 让\(P_1\),...">
+<meta name="twitter:description" content="我们首先导入后面会用到的包，后续会用到dplyr的%&gt;%管道函数和kableExtra输出表格。 library(dplyr) library(kableExtra)  2.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。让\(P_1\),...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -87,58 +88,52 @@
 <h2>
 <span class="header-section-number">2.1</span> 疫苗有效性(Vaccine Efficacy)<a class="anchor" aria-label="anchor" href="#%E7%96%AB%E8%8B%97%E6%9C%89%E6%95%88%E6%80%A7vaccine-efficacy"><i class="fas fa-link"></i></a>
 </h2>
-<ul>
-<li><p>当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性<span class="math inline">\(\pi\)</span>(Vaccine Efficacy)这个指标。</p></li>
-<li><p>让<span class="math inline">\(P_1\)</span>, <span class="math inline">\(P_2\)</span>分别为安慰剂组和接种疫苗组的发病率；<span class="math inline">\(N_1\)</span>, <span class="math inline">\(N_2\)</span>分别为安慰剂组和接种疫苗组的群体总数；<span class="math inline">\(X, Y\)</span>分别为安慰剂和疫苗组的病例人数。则<span class="math inline">\(X \overset{i.i.d}{\sim}\text{Binomial}(N_1, P_1)\)</span>, <span class="math inline">\(Y \overset{i.i.d}{\sim}\text{Binomial}(N_2, P_2)\)</span>。</p></li>
-<li><p>疫苗有效性可以可以用可以被写成：
+<p>当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性<span class="math inline">\(\pi\)</span>(Vaccine Efficacy)这个指标。让<span class="math inline">\(P_1\)</span>, <span class="math inline">\(P_2\)</span>分别为安慰剂组和接种疫苗组的发病率；<span class="math inline">\(N_1\)</span>, <span class="math inline">\(N_2\)</span>分别为安慰剂组和接种疫苗组的群体总数；<span class="math inline">\(X, Y\)</span>分别为安慰剂和疫苗组的病例人数。则<span class="math inline">\(X \overset{i.i.d}{\sim}\text{Binomial}(N_1, P_1)\)</span>, <span class="math inline">\(Y \overset{i.i.d}{\sim}\text{Binomial}(N_2, P_2)\)</span>。</p>
+<p>疫苗有效性为：
 <span class="math display" id="eq:pi">\[\begin{equation}
-\pi = 1-(P_2/P_1)
-\tag{2.1}
-\end{equation}\]</span></p></li>
-<li><p>原假设和备择假设可以写成</p></li>
-</ul>
+  \pi = 1-(P_2/P_1)
+  \tag{2.1}
+\end{equation}\]</span>
+原假设和备择假设为：</p>
 <p><span class="math display" id="eq:hypo1">\[\begin{equation}
   H_0: \pi \leq \pi_0 \text{ versus } \ H_1:\pi&gt;\pi_0   
   \tag{2.2}
 \end{equation}\]</span></p>
-</div>
-<div id="基于泊松假设的大样本" class="section level2" number="2.2">
-<h2>
-<span class="header-section-number">2.2</span> 基于泊松假设的大样本<a class="anchor" aria-label="anchor" href="#%E5%9F%BA%E4%BA%8E%E6%B3%8A%E6%9D%BE%E5%81%87%E8%AE%BE%E7%9A%84%E5%A4%A7%E6%A0%B7%E6%9C%AC"><i class="fas fa-link"></i></a>
-</h2>
-<ul>
-<li><p>如果一个疾病发病率较低，我们就需要更多受试者参加实验，在这种情况下<span class="math inline">\(X, Y\)</span>可以被近似成为独立的泊松分布.</p></li>
-<li><p><span class="math inline">\(X \overset{i.i.d}{\sim}\text{Poisson}(\lambda_1)\)</span>, <span class="math inline">\(Y \overset{i.i.d}{\sim}\text{Poisson}(\lambda_2)\)</span> with <span class="math inline">\(\lambda_1 = N_1\cdot P_1, \lambda_2 = N_2\cdot P_2\)</span>.</p></li>
-<li><p><span class="math inline">\(Y\)</span>的条件概率分布可以被写成
-<span class="math inline">\(Y|T \sim \text{Binomial}(T, \theta)=\binom{T}{k} \theta^k(1-\theta)^{T-k}\)</span> with <span class="math inline">\(T = X + Y, \theta = \frac{\lambda_1}{\lambda_1=\lambda_2}\)</span></p></li>
-<li><p>此时原假设和备择假设可以写成</p></li>
-</ul>
+<p>如果一个疾病发病率较低，我们就需要更多受试者参加实验，在这种情况下<span class="math inline">\(X, Y\)</span>可以被近似成为独立的泊松分布，
+也就是<span class="math inline">\(X \overset{i.i.d}{\sim}\text{Poisson}(\lambda_1)\)</span>, <span class="math inline">\(Y \overset{i.i.d}{\sim}\text{Poisson}(\lambda_2)\)</span> with <span class="math inline">\(\lambda_1 = N_1\cdot P_1, \lambda_2 = N_2\cdot P_2\)</span>.</p>
+<p><span class="math inline">\(Y\)</span>给定<span class="math inline">\(T\)</span>的条件概率分布为
+<span class="math display" id="eq:ycondt">\[\begin{equation}
+  Y|T \sim \text{Binomial}(T, \theta)=\binom{T}{k} \theta^k(1-\theta)^{T-k}$ with $T = X + Y, \theta = \frac{\lambda_1}{\lambda_1=\lambda_2}$
+  \tag{2.3}
+\end{equation}\]</span>
+此时原假设和备择假设为：</p>
 <p><span class="math display" id="eq:hypo2">\[\begin{equation}
   H_0: \theta \geq \theta_0 \text{ versus } \ H_1:\theta&lt;\theta_0 \text{ where } \theta_0 = \frac{1-\pi_0}{2-\pi_0}
-  \tag{2.3}
+  \tag{2.4}
 \end{equation}\]</span></p>
 <ul>
-<li><p>P value 可以被计算为
+<li><p>计算的P value 公式为
 <span class="math display" id="eq:pvalue">\[\begin{equation}
 p = \Pr[Y \leq Y_{\text{obs}} \mid Y \sim \text{Binomial}(T, \theta_0)] = \sum_{k=0}^{Y_{\text{obs}}} \binom{T}{k} \theta_0^k (1 - \theta_0)^{T - k}
-\tag{2.4}
-\end{equation}\]</span></p></li>
-<li><p>Statistical power 可以被计算为
-<span class="math display" id="eq:power">\[\begin{equation}
-1 - \beta = \Pr[Y \leq Y_c \mid Y \sim \text{Binomial}(T, \theta_1)] = \sum_{k=0}^{Y_c} \binom{T}{k} \theta_1^k (1 - \theta_1)^{T - k}
 \tag{2.5}
 \end{equation}\]</span></p></li>
-<li><p>临床实验所需样本量可以被计算为
-<span class="math display" id="eq:n2">\[\begin{equation}
-N_2 = T/[(2-\pi_1)/P_1]
+<li><p>计算Statistical power公式为
+<span class="math display" id="eq:power">\[\begin{equation}
+1 - \beta = \Pr[Y \leq Y_c \mid Y \sim \text{Binomial}(T, \theta_1)] = \sum_{k=0}^{Y_c} \binom{T}{k} \theta_1^k (1 - \theta_1)^{T - k}
 \tag{2.6}
 \end{equation}\]</span></p></li>
-<li><p>计算样本量所需的变量为<span class="math inline">\(\pi_0, \pi_1, \alpha\)</span>, 期望统计功效(1-<span class="math inline">\(\beta\)</span>)和安慰剂组发病率(<span class="math inline">\(P_1\)</span>)。</p></li>
+<li><p>计算临床实验所需样本量公式为
+<span class="math display" id="eq:n2">\[\begin{equation}
+N_2 = T/[(2-\pi_1)/P_1]
+\tag{2.7}
+\end{equation}\]</span></p></li>
 </ul>
+<p>计算样本量所需的变量为<span class="math inline">\(\pi_0, \pi_1, \alpha\)</span>, 期望统计功效(1-<span class="math inline">\(\beta\)</span>)和安慰剂组发病率(<span class="math inline">\(P_1\)</span>)。</p>
+<p>详细推导过程可以看 <span class="citation">Ivan S. F. Chan and Norman R. Bohidar<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span&gt;“Exact Power and Sample Size for Vaccine Efficacy Studies,”&lt;/span&gt; &lt;em&gt;Communications in Statistics - Theory and Methods&lt;/em&gt; 27, no. 6 (1998): 1305–22, &lt;a href="https://doi.org/10.1080/03610929808832160"&gt;https://doi.org/10.1080/03610929808832160&lt;/a&gt;.&lt;/p&gt;'><sup>1</sup></a></span> 和 <span class="citation">Matthew M Loiacono<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;em&gt;&lt;span&gt;SAMPLE&lt;/span&gt; &lt;span&gt;SIZE&lt;/span&gt; &lt;span&gt;ESTIMATION&lt;/span&gt; &lt;span&gt;AND&lt;/span&gt; &lt;span&gt;POWER&lt;/span&gt; &lt;span&gt;CALCULATIONS&lt;/span&gt; &lt;span&gt;FOR&lt;/span&gt; &lt;span&gt;VACCINE&lt;/span&gt; &lt;span&gt;EFFICACY&lt;/span&gt; &lt;span&gt;TRIALS&lt;/span&gt; &lt;span&gt;FOR&lt;/span&gt; &lt;span&gt;EXCEEDINGLY&lt;/span&gt; &lt;span&gt;RARE&lt;/span&gt; &lt;span&gt;DISEASES&lt;/span&gt;&lt;/em&gt;, n.d.&lt;/p&gt;"><sup>2</sup></a></span></p>
 </div>
-<div id="r代码示例" class="section level2" number="2.3">
+<div id="r代码示例" class="section level2" number="2.2">
 <h2>
-<span class="header-section-number">2.3</span> R代码示例<a class="anchor" aria-label="anchor" href="#r%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.2</span> R代码示例<a class="anchor" aria-label="anchor" href="#r%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><i class="fas fa-link"></i></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">exact_conditonal_test</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">T</span>, <span class="va">alpha</span>, <span class="va">power</span>, <span class="va">theta0</span>, <span class="va">theta1</span><span class="op">)</span> <span class="op">{</span></span>
@@ -179,12 +174,11 @@ N_2 = T/[(2-\pi_1)/P_1]
 <span>  <span class="va">N2</span> <span class="op">&lt;-</span> <span class="va">T_value</span><span class="op">/</span><span class="op">(</span><span class="op">(</span><span class="fl">2</span><span class="op">-</span><span class="va">pi1</span><span class="op">)</span><span class="op">*</span><span class="va">incidence</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">dropout_rate</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">'The sample of vaccine group considering the drop out rate:'</span>, <span class="va">N2</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>详细推导过程可以看 <span class="citation">Ivan S. F. Chan and Norman R. Bohidar<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span&gt;“Exact Power and Sample Size for Vaccine Efficacy Studies,”&lt;/span&gt; &lt;em&gt;Communications in Statistics - Theory and Methods&lt;/em&gt; 27, no. 6 (1998): 1305–22, &lt;a href="https://doi.org/10.1080/03610929808832160"&gt;https://doi.org/10.1080/03610929808832160&lt;/a&gt;.&lt;/p&gt;'><sup>1</sup></a></span> 和 <span class="citation">Matthew M Loiacono<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;em&gt;&lt;span&gt;SAMPLE&lt;/span&gt; &lt;span&gt;SIZE&lt;/span&gt; &lt;span&gt;ESTIMATION&lt;/span&gt; &lt;span&gt;AND&lt;/span&gt; &lt;span&gt;POWER&lt;/span&gt; &lt;span&gt;CALCULATIONS&lt;/span&gt; &lt;span&gt;FOR&lt;/span&gt; &lt;span&gt;VACCINE&lt;/span&gt; &lt;span&gt;EFFICACY&lt;/span&gt; &lt;span&gt;TRIALS&lt;/span&gt; &lt;span&gt;FOR&lt;/span&gt; &lt;span&gt;EXCEEDINGLY&lt;/span&gt; &lt;span&gt;RARE&lt;/span&gt; &lt;span&gt;DISEASES&lt;/span&gt;&lt;/em&gt;, n.d.&lt;/p&gt;"><sup>2</sup></a></span></p>
-<div id="例1" class="section level3" number="2.3.1">
+<div id="例1" class="section level3" number="2.2.1">
 <h3>
-<span class="header-section-number">2.3.1</span> 例1<a class="anchor" aria-label="anchor" href="#%E4%BE%8B1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.2.1</span> 例1<a class="anchor" aria-label="anchor" href="#%E4%BE%8B1"><i class="fas fa-link"></i></a>
 </h3>
-<p><span class="citation">Chan and Bohidar<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;span&gt;“Exact Power and Sample Size for Vaccine Efficacy Studies.”&lt;/span&gt;&lt;/p&gt;"><sup>3</sup></a></span> 这篇论文介绍了exact conditional method的公式推导。他还给了一个不同样本量对应的power和significance level。 我们可以运行上面的函数来验证结果的准确性。设置病例范围从33到40，<span class="math inline">\(\pi_0=0.2,\pi_1=0.8, P_1=0.006, \alpha=0.025\)</span>, 期望统计功效为95%。输入以上参数到ect_sample_size这个函数。</p>
+<p><span class="citation">Chan and Bohidar<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;span&gt;“Exact Power and Sample Size for Vaccine Efficacy Studies.”&lt;/span&gt;&lt;/p&gt;"><sup>3</sup></a></span> 在其论文中详细阐述了exact conditional方法的理论推导，并提供了不同样本量下统计功效（power）与显著性水平（significance level）的对应表格。为验证该方法的计算准确性，我们可以调用<code>ect_sample_size()</code>函数进行实证分析。具体参数设置：病例范围33到40，<span class="math inline">\(\pi_0=0.2,\pi_1=0.8, P_1=0.006, \alpha=0.025\)</span>, 目标统计功效为95%。将这些参数输入函数后，即可获得相应的样本量估计结果。</p>
 <div class="inline-figure"><img src="image/Screenshot%202025-07-21%20155606.png" width="334"></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">33</span><span class="op">:</span><span class="fl">40</span> <span class="co"># the number of T</span></span>
@@ -330,23 +324,28 @@ p-value
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res1</span><span class="op">$</span><span class="cn">T</span></span>
 <span><span class="co">#&gt; [1] 37</span></span></code></pre></div>
-<p>打印出T=37与论文一致，再用公式<a href="exact-conditional-method%E7%96%AB%E8%8B%97%E6%9C%89%E6%95%88%E6%80%A7vaccine-efficacy%E7%9A%84%E6%A0%B7%E6%9C%AC%E9%87%8F%E8%AE%A1%E7%AE%97.html#eq:n2">(2.6)</a>计算出疫苗组样本量，为了方便计算我也写成了函数t2n。此示例计算样本量时没有考虑脱落所以dropout_rate 参数可以设置为0。得到结果样本量至少为5138.889。这个结果乘2就是疫苗组和安慰剂组所需的总样本量，总样本量至少为10277.78，进一10278。此结果与论文一致，证明我们的算法无误。</p>
+<p>打印结果显示 <strong>T = 37</strong>，与论文中的结果一致。接下来，利用公式 <code>\@ref(eq:n2)</code> 计算疫苗组所需的样本量。为了方便重复使用，我将该计算过程封装成了函数 <code>T2N()</code>。</p>
+<p>在本示例中，未考虑受试者脱落情况，因此将 <code>dropout_rate</code> 参数设为 <code>0</code>。计算结果显示，疫苗组的样本量应不少于 <strong>5138.889</strong>。将该值乘以 2，即可得出疫苗组与安慰剂组的总样本量应不少于 <strong>10277.78</strong>，四舍五入后为 <strong>10278</strong>。</p>
+<p>该结果与论文完全一致，说明我们的算法实现是正确的。
+。</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">T2N</span><span class="op">(</span><span class="fl">37</span>, <span class="va">incidence</span>, <span class="va">pi1</span>, dropout_rate <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="co">#&gt; The sample of vaccine group considering the drop out rate: 5138.889</span></span></code></pre></div>
 </div>
-<div id="hrv-三期" class="section level3" number="2.3.2">
+<div id="hrv-三期" class="section level3" number="2.2.2">
 <h3>
-<span class="header-section-number">2.3.2</span> HRV-三期<a class="anchor" aria-label="anchor" href="#hrv-%E4%B8%89%E6%9C%9F"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.2.2</span> HRV-三期<a class="anchor" aria-label="anchor" href="#hrv-%E4%B8%89%E6%9C%9F"><i class="fas fa-link"></i></a>
 </h3>
 <div class="inline-figure"><img src="image/Screenshot%202025-07-22%20173413.png" width="284"></div>
-<p><span class="citation">Zhiwei Wu et al.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span&gt;“Efficacy, Safety and Immunogenicity of Hexavalent Rotavirus Vaccine in &lt;span&gt;Chinese&lt;/span&gt; Infants,”&lt;/span&gt; &lt;em&gt;Virologica Sinica&lt;/em&gt; 37, no. 5 (2022): 724–30, &lt;a href="https://doi.org/10.1016/j.virs.2022.07.011"&gt;https://doi.org/10.1016/j.virs.2022.07.011&lt;/a&gt;.&lt;/p&gt;'><sup>4</sup></a></span> 这篇论文原为我们想要复现的样本量。但是过程中发现其中并未明确提及所需参数 <span class="math inline">\(\pi_1, \alpha\)</span>和期望统计功效。无法计算出样本量所以后续我们使用这篇论文作为参考。下一个示例为HRV-三期这篇论文的参考文献，也是rotavirus vaccine的疫苗有效性临床实验。</p>
+<p><span class="citation">Zhiwei Wu et al.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span&gt;“Efficacy, Safety and Immunogenicity of Hexavalent Rotavirus Vaccine in &lt;span&gt;Chinese&lt;/span&gt; Infants,”&lt;/span&gt; &lt;em&gt;Virologica Sinica&lt;/em&gt; 37, no. 5 (2022): 724–30, &lt;a href="https://doi.org/10.1016/j.virs.2022.07.011"&gt;https://doi.org/10.1016/j.virs.2022.07.011&lt;/a&gt;.&lt;/p&gt;'><sup>4</sup></a></span> 这篇论文原本是我们希望复现样本量计算的参考文献。然而在复现过程中发现，文中并未明确给出所需的关键参数 <span class="math inline">\(\pi_1\)</span>、<span class="math inline">\(\alpha\)</span> 以及期望的统计功效，因此无法准确计算所需样本量。因此，我们决定后续不再以该论文作为参考。</p>
+<p>接下来的示例将以 HRV-三期这篇论文的参考文献为依据，该研究同样是关于轮状病毒（rotavirus）疫苗有效性的临床试验。</p>
 </div>
-<div id="rv5" class="section level3" number="2.3.3">
+<div id="rv5" class="section level3" number="2.2.3">
 <h3>
-<span class="header-section-number">2.3.3</span> RV5<a class="anchor" aria-label="anchor" href="#rv5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.2.3</span> RV5<a class="anchor" aria-label="anchor" href="#rv5"><i class="fas fa-link"></i></a>
 </h3>
-<p><span class="citation">Zhaojun Mo et al.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span&gt;“Efficacy and Safety of a Pentavalent Live Human-Bovine Reassortant Rotavirus Vaccine (&lt;span&gt;RV5&lt;/span&gt;) in Healthy &lt;span&gt;Chinese&lt;/span&gt; Infants: &lt;span&gt;A&lt;/span&gt; Randomized, Double-Blind, Placebo-Controlled Trial,”&lt;/span&gt; &lt;em&gt;Vaccine&lt;/em&gt; 35, no. 43 (2017): 5897–904, &lt;a href="https://doi.org/10.1016/j.vaccine.2017.08.081"&gt;https://doi.org/10.1016/j.vaccine.2017.08.081&lt;/a&gt;.&lt;/p&gt;'><sup>5</sup></a></span> 这篇论文会作为我们后续疫苗有效性检验样本量计算的参考文章。提供参数：15%脱落率， <span class="math inline">\(\pi_0=0, \pi_1=0.6, P_1 = 0.02, \alpha = 0.025\)</span>，期望统计功效为80%。带入以上参数可以得到病例总数至少为47，我们取双数48。再用T2N函数计算疫苗组样本量总数至少2016.807，我们取整为2020，与论文一致。</p>
+<p><span class="citation">Zhaojun Mo et al.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span&gt;“Efficacy and Safety of a Pentavalent Live Human-Bovine Reassortant Rotavirus Vaccine (&lt;span&gt;RV5&lt;/span&gt;) in Healthy &lt;span&gt;Chinese&lt;/span&gt; Infants: &lt;span&gt;A&lt;/span&gt; Randomized, Double-Blind, Placebo-Controlled Trial,”&lt;/span&gt; &lt;em&gt;Vaccine&lt;/em&gt; 35, no. 43 (2017): 5897–904, &lt;a href="https://doi.org/10.1016/j.vaccine.2017.08.081"&gt;https://doi.org/10.1016/j.vaccine.2017.08.081&lt;/a&gt;.&lt;/p&gt;'><sup>5</sup></a></span> 这篇论文将作为我们后续进行疫苗有效性检验样本量计算的参考文献。文中提供了以下参数：15% 的脱落率，<span class="math inline">\(\pi_0 = 0\)</span>、<span class="math inline">\(\pi_1 = 0.6\)</span>、<span class="math inline">\(P_1 = 0.02\)</span>、显著性水平 <span class="math inline">\(\alpha = 0.025\)</span>，以及期望的统计功效为 80%。</p>
+<p>代入上述参数后，可得所需的最小病例数为 47。为了方便分组，我们取双数为 48。接着，使用 <code>T2N()</code> 函数计算疫苗组所需的样本量，结果为至少 2016.807，向上取整后为 2020。该样本量结果与论文中的报告一致，验证了我们算法的正确性。</p>
 <div class="inline-figure"><img src="image/Screenshot%202025-07-21%20162616.png" width="328"></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">40</span><span class="op">:</span><span class="fl">50</span> <span class="co"># the number of T</span></span>
@@ -538,8 +537,9 @@ p-value
 <span><span class="co">#&gt; The sample of vaccine group considering the drop out rate: 2016.807</span></span></code></pre></div>
 </div>
 </div>
-<div id="reference" class="section level2 unnumbered">
-<h2>Reference<a class="anchor" aria-label="anchor" href="#reference"><i class="fas fa-link"></i></a>
+<div id="reference" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Reference<a class="anchor" aria-label="anchor" href="#reference"><i class="fas fa-link"></i></a>
 </h2>
 
 <div id="refs" class="references csl-bib-body hanging-indent">
@@ -577,15 +577,14 @@ Wu, Zhiwei, Qingliang Li, Yan Liu, et al. <span>“Efficacy, Safety and Immunoge
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#exact-conditional-method%E7%96%AB%E8%8B%97%E6%9C%89%E6%95%88%E6%80%A7vaccine-efficacy%E7%9A%84%E6%A0%B7%E6%9C%AC%E9%87%8F%E8%AE%A1%E7%AE%97"><span class="header-section-number">2</span> Exact Conditional Method疫苗有效性(Vaccine Efficacy)的样本量计算</a></li>
 <li><a class="nav-link" href="#%E7%96%AB%E8%8B%97%E6%9C%89%E6%95%88%E6%80%A7vaccine-efficacy"><span class="header-section-number">2.1</span> 疫苗有效性(Vaccine Efficacy)</a></li>
-<li><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%B3%8A%E6%9D%BE%E5%81%87%E8%AE%BE%E7%9A%84%E5%A4%A7%E6%A0%B7%E6%9C%AC"><span class="header-section-number">2.2</span> 基于泊松假设的大样本</a></li>
 <li>
-<a class="nav-link" href="#r%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="header-section-number">2.3</span> R代码示例</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#%E4%BE%8B1"><span class="header-section-number">2.3.1</span> 例1</a></li>
-<li><a class="nav-link" href="#hrv-%E4%B8%89%E6%9C%9F"><span class="header-section-number">2.3.2</span> HRV-三期</a></li>
-<li><a class="nav-link" href="#rv5"><span class="header-section-number">2.3.3</span> RV5</a></li>
+<a class="nav-link" href="#r%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="header-section-number">2.2</span> R代码示例</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%E4%BE%8B1"><span class="header-section-number">2.2.1</span> 例1</a></li>
+<li><a class="nav-link" href="#hrv-%E4%B8%89%E6%9C%9F"><span class="header-section-number">2.2.2</span> HRV-三期</a></li>
+<li><a class="nav-link" href="#rv5"><span class="header-section-number">2.2.3</span> RV5</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#reference">Reference</a></li>
+<li><a class="nav-link" href="#reference"><span class="header-section-number">2.3</span> Reference</a></li>
 </ul>
 
       <div class="book-extra">
