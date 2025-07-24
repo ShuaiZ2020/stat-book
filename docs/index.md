@@ -1,7 +1,7 @@
 --- 
 title: "临床实验生物统计学方法R语言实例"
 author: "朱帅"
-date: "2025-07-23"
+date: "2025-07-24"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: ["reference.bib"]
