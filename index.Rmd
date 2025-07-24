@@ -19,3 +19,5 @@ csl: chicago-fullnote-bibliography.csl
 # 前言
 
 生物统计学方法R代码分享
+
+[pdf版本]('https://book.biostatwithshuai.com/stat-book.pdf')
