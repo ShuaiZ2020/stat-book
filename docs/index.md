@@ -1,10 +1,10 @@
 --- 
 title: "临床实验生物统计学方法R语言实例"
 author: "朱帅"
-date: "2025-07-24"
+date: "2025-07-25"
 site: bookdown::bookdown_site
-documentclass: book
-bibliography: ["reference.bib"]
+documentclass: scrartcl    
+bibliography: ["reference.bib", "packages.bib"]
 url: https://shuaiz2020.github.io/stat-book
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |

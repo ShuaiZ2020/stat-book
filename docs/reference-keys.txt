@@ -6,10 +6,8 @@ eq:pvalue
 eq:power
 eq:n2
 前言
-罕见病疫苗有效性样本量估计
 疫苗有效性vaccine-efficacy
 r代码示例
 例1
 hrv-三期
 rv5
-reference

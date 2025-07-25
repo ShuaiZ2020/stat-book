@@ -1,7 +1,8 @@
+\newpage
 
-# 罕见病疫苗有效性样本量估计
+# 罕见病疫苗有效性样本量估计{-}
 
-我们首先导入后面会用到的包，后续会用到dplyr的%>%管道函数和kableExtra输出表格。
+我们首先导入后面会用到的包，后续会用到 @R-dplyr 的dplyr  的%>%管道函数和 @R-kableExtra 的kableExtra  输出表格。
 
 ``` r
 library(dplyr)
@@ -31,7 +32,7 @@ $$
 
 $Y$给定$T$的条件概率分布为 
 $$
-  Y|T \sim \text{Binomial}(T, \theta)=\binom{T}{k} \theta^k(1-\theta)^{T-k} \text{with} T = X + Y, \theta = \frac{\lambda_1}{\lambda_1=\lambda_2}
+  Y|T \sim \text{Binomial}(T, \theta)=\binom{T}{k} \theta^k(1-\theta)^{T-k} \text{ with } T = X + Y, \theta = \frac{\lambda_1}{\lambda_1=\lambda_2}
   (\#eq:ycondt)
 $$
 此时原假设和备择假设为：
@@ -99,11 +100,6 @@ ect_sample_size <- function(T, pi0, pi1, incidence, alpha, power){
   class(result) <- 'result'
   result
 }
-
-print.myresult <- function(x, ...) {
-  cat(x$text, "\n")
-}
-
 
 T2N <- function(T_value, incidence, pi1, dropout_rate){
   N2 <- T_value/((2-pi1)*incidence)/(1-dropout_rate)
@@ -204,7 +200,6 @@ res1$T
 在本示例中，未考虑受试者脱落情况，因此将 `dropout_rate` 参数设为 `0`。计算结果显示，疫苗组的样本量应不少于 **5138.889**。将该值乘以 2，即可得出疫苗组与安慰剂组的总样本量应不少于 **10277.78**，进一后为 **10278**。
 
 该结果与论文完全一致，说明我们的算法实现是正确的。
-。
 
 ``` r
 T2N(37, incidence, pi1, dropout_rate = 0)
@@ -333,7 +328,7 @@ T2N(48, incidence, pi1, dropout_rate = 0.15)
 #> The sample of vaccine group considering the drop out rate: 2016.807
 ```
 
-## Reference
+## Reference{-}
 
 
 
