@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>罕见病疫苗有效性样本量估计 | 临床实验生物统计学方法R语言实例</title>
 <meta name="author" content="朱帅">
-<meta name="description" content="我们首先导入后面会用到的包，后续会用到 Hadley Wickham et al.1 的dplyr 的%&gt;%管道函数和 Hao Zhu2 的kableExtra 输出表格。 library(dplyr) library(kableExtra)  1.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine...">
+<meta name="description" content="我们首先导入后面会用到的包，后续会用到的dplyr的%&gt;%管道函数和的kableExtra输出表格[1,2]。 library(dplyr) library(kableExtra)  1.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。让\(P_1\),...">
 <meta name="generator" content="bookdown 0.43 with bs4_book()">
 <meta property="og:title" content="罕见病疫苗有效性样本量估计 | 临床实验生物统计学方法R语言实例">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://shuaiz2020.github.io/stat-book/罕见病疫苗有效性样本量估计.html">
-<meta property="og:description" content="我们首先导入后面会用到的包，后续会用到 Hadley Wickham et al.1 的dplyr 的%&gt;%管道函数和 Hao Zhu2 的kableExtra 输出表格。 library(dplyr) library(kableExtra)  1.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine...">
+<meta property="og:description" content="我们首先导入后面会用到的包，后续会用到的dplyr的%&gt;%管道函数和的kableExtra输出表格[1,2]。 library(dplyr) library(kableExtra)  1.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。让\(P_1\),...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="罕见病疫苗有效性样本量估计 | 临床实验生物统计学方法R语言实例">
-<meta name="twitter:description" content="我们首先导入后面会用到的包，后续会用到 Hadley Wickham et al.1 的dplyr 的%&gt;%管道函数和 Hao Zhu2 的kableExtra 输出表格。 library(dplyr) library(kableExtra)  1.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine...">
+<meta name="twitter:description" content="我们首先导入后面会用到的包，后续会用到的dplyr的%&gt;%管道函数和的kableExtra输出表格[1,2]。 library(dplyr) library(kableExtra)  1.1 疫苗有效性(Vaccine Efficacy) 当我们检验一款新的疫苗是否有效时，通常会使用疫苗有效性\(\pi\)(Vaccine Efficacy)这个指标。让\(P_1\),...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -79,7 +79,7 @@
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="罕见病疫苗有效性样本量估计" class="section level1 unnumbered">
 <h1>罕见病疫苗有效性样本量估计<a class="anchor" aria-label="anchor" href="#%E7%BD%95%E8%A7%81%E7%97%85%E7%96%AB%E8%8B%97%E6%9C%89%E6%95%88%E6%80%A7%E6%A0%B7%E6%9C%AC%E9%87%8F%E4%BC%B0%E8%AE%A1"><i class="fas fa-link"></i></a>
 </h1>
-<p>我们首先导入后面会用到的包，后续会用到 <span class="citation">Hadley Wickham et al.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;em&gt;Dplyr: A Grammar of Data Manipulation&lt;/em&gt; (2023), &lt;a href="https://dplyr.tidyverse.org"&gt;https://dplyr.tidyverse.org&lt;/a&gt;.&lt;/p&gt;'><sup>1</sup></a></span> 的dplyr 的%&gt;%管道函数和 <span class="citation">Hao Zhu<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;em&gt;kableExtra: Construct Complex Table with Kable and Pipe Syntax&lt;/em&gt; (2024), &lt;a href="http://haozhu233.github.io/kableExtra/"&gt;http://haozhu233.github.io/kableExtra/&lt;/a&gt;.&lt;/p&gt;'><sup>2</sup></a></span> 的kableExtra 输出表格。</p>
+<p>我们首先导入后面会用到的包，后续会用到的dplyr的%&gt;%管道函数和的kableExtra输出表格<span class="citation">[1,2]</span>。</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span></span></code></pre></div>
@@ -128,7 +128,7 @@ N_2 = T/[(2-\pi_1)/P_1]
 \]</span></p></li>
 </ul>
 <p>计算样本量所需的变量为<span class="math inline">\(\pi_0, \pi_1, \alpha\)</span>, 期望统计功效(1-<span class="math inline">\(\beta\)</span>)和安慰剂组发病率(<span class="math inline">\(P_1\)</span>)。</p>
-<p>详细推导过程可以看 <span class="citation">Ivan S. F. Chan and Norman R. Bohidar<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span&gt;“Exact Power and Sample Size for Vaccine Efficacy Studies,”&lt;/span&gt; &lt;em&gt;Communications in Statistics - Theory and Methods&lt;/em&gt; 27, no. 6 (1998): 1305–22, &lt;a href="https://doi.org/10.1080/03610929808832160"&gt;https://doi.org/10.1080/03610929808832160&lt;/a&gt;.&lt;/p&gt;'><sup>3</sup></a></span> 和 <span class="citation">Matthew M Loiacono<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;em&gt;&lt;span&gt;SAMPLE&lt;/span&gt; &lt;span&gt;SIZE&lt;/span&gt; &lt;span&gt;ESTIMATION&lt;/span&gt; &lt;span&gt;AND&lt;/span&gt; &lt;span&gt;POWER&lt;/span&gt; &lt;span&gt;CALCULATIONS&lt;/span&gt; &lt;span&gt;FOR&lt;/span&gt; &lt;span&gt;VACCINE&lt;/span&gt; &lt;span&gt;EFFICACY&lt;/span&gt; &lt;span&gt;TRIALS&lt;/span&gt; &lt;span&gt;FOR&lt;/span&gt; &lt;span&gt;EXCEEDINGLY&lt;/span&gt; &lt;span&gt;RARE&lt;/span&gt; &lt;span&gt;DISEASES&lt;/span&gt;&lt;/em&gt;, n.d.&lt;/p&gt;"><sup>4</sup></a></span></p>
+<p>详细推导过程可以看这两篇论文 <span class="citation">[3,4]</span></p>
 </div>
 <div id="r代码示例" class="section level2" number="1.2">
 <h2>
@@ -174,7 +174,7 @@ N_2 = T/[(2-\pi_1)/P_1]
 <h3>
 <span class="header-section-number">1.2.1</span> 例1<a class="anchor" aria-label="anchor" href="#%E4%BE%8B1"><i class="fas fa-link"></i></a>
 </h3>
-<p><span class="citation">Chan and Bohidar<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;&lt;span&gt;“Exact Power and Sample Size for Vaccine Efficacy Studies.”&lt;/span&gt;&lt;/p&gt;"><sup>5</sup></a></span> 在其论文中详细阐述了exact conditional方法的理论推导，并提供了不同样本量下统计功效（power）与显著性水平（significance level）的对应表格。为验证该方法的计算准确性，我们可以调用<code>ect_sample_size()</code>函数进行实证分析。具体参数设置：病例范围33到40，<span class="math inline">\(\pi_0=0.2,\pi_1=0.8, P_1=0.006, \alpha=0.025\)</span>, 目标统计功效为95%。将这些参数输入函数后，即可获得相应的样本量估计结果。</p>
+<p><span class="citation">[3]</span> 在其论文中详细阐述了exact conditional方法的理论推导，并提供了不同样本量下统计功效（power）与显著性水平（significance level）的对应表格。为验证该方法的计算准确性，我们可以调用<code>ect_sample_size()</code>函数进行实证分析。具体参数设置：病例范围33到40，<span class="math inline">\(\pi_0=0.2,\pi_1=0.8, P_1=0.006, \alpha=0.025\)</span>, 目标统计功效为95%。将这些参数输入函数后，即可获得相应的样本量估计结果。</p>
 <div class="inline-figure"><img src="image/Screenshot%202025-07-21%20155606.png" width="100%"></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fl">33</span><span class="op">:</span><span class="fl">40</span> <span class="co"># the number of T</span></span>
@@ -332,14 +332,14 @@ p-value
 <span class="header-section-number">1.2.2</span> HRV-三期<a class="anchor" aria-label="anchor" href="#hrv-%E4%B8%89%E6%9C%9F"><i class="fas fa-link"></i></a>
 </h3>
 <div class="inline-figure"><img src="image/Screenshot%202025-07-22%20173413.png" width="100%"></div>
-<p><span class="citation">Zhiwei Wu et al.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span&gt;“Efficacy, Safety and Immunogenicity of Hexavalent Rotavirus Vaccine in &lt;span&gt;Chinese&lt;/span&gt; Infants,”&lt;/span&gt; &lt;em&gt;Virologica Sinica&lt;/em&gt; 37, no. 5 (2022): 724–30, &lt;a href="https://doi.org/10.1016/j.virs.2022.07.011"&gt;https://doi.org/10.1016/j.virs.2022.07.011&lt;/a&gt;.&lt;/p&gt;'><sup>6</sup></a></span> 这篇论文原本是我们希望复现样本量计算的参考文献。然而在复现过程中发现，文中并未明确给出所需的关键参数 <span class="math inline">\(\pi_1\)</span>、<span class="math inline">\(\alpha\)</span> 以及期望的统计功效，因此无法准确计算所需样本量。因此，我们决定后续不再以该论文作为参考。</p>
+<p><span class="citation">[5]</span> 这篇论文原本是我们希望复现样本量计算的参考文献。然而在复现过程中发现，文中并未明确给出所需的关键参数 <span class="math inline">\(\pi_1\)</span>、<span class="math inline">\(\alpha\)</span> 以及期望的统计功效，因此无法准确计算所需样本量。因此，我们决定后续不再以该论文作为参考。</p>
 <p>接下来的示例将以 HRV-三期这篇论文的参考文献为依据，该研究同样是关于轮状病毒（rotavirus）疫苗有效性的临床试验。</p>
 </div>
 <div id="rv5" class="section level3" number="1.2.3">
 <h3>
 <span class="header-section-number">1.2.3</span> RV5<a class="anchor" aria-label="anchor" href="#rv5"><i class="fas fa-link"></i></a>
 </h3>
-<p><span class="citation">Zhaojun Mo et al.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;span&gt;“Efficacy and Safety of a Pentavalent Live Human-Bovine Reassortant Rotavirus Vaccine (&lt;span&gt;RV5&lt;/span&gt;) in Healthy &lt;span&gt;Chinese&lt;/span&gt; Infants: &lt;span&gt;A&lt;/span&gt; Randomized, Double-Blind, Placebo-Controlled Trial,”&lt;/span&gt; &lt;em&gt;Vaccine&lt;/em&gt; 35, no. 43 (2017): 5897–904, &lt;a href="https://doi.org/10.1016/j.vaccine.2017.08.081"&gt;https://doi.org/10.1016/j.vaccine.2017.08.081&lt;/a&gt;.&lt;/p&gt;'><sup>7</sup></a></span> 这篇论文将作为我们后续进行疫苗有效性检验样本量计算的参考文献。文中提供了以下参数：15% 的脱落率，<span class="math inline">\(\pi_0 = 0\)</span>、<span class="math inline">\(\pi_1 = 0.6\)</span>、<span class="math inline">\(P_1 = 0.02\)</span>、显著性水平 <span class="math inline">\(\alpha = 0.025\)</span>，以及期望的统计功效为 80%。</p>
+<p><span class="citation">[6]</span> 这篇论文将作为我们后续进行疫苗有效性检验样本量计算的参考文献。文中提供了以下参数：15% 的脱落率，<span class="math inline">\(\pi_0 = 0\)</span>、<span class="math inline">\(\pi_1 = 0.6\)</span>、<span class="math inline">\(P_1 = 0.02\)</span>、显著性水平 <span class="math inline">\(\alpha = 0.025\)</span>，以及期望的统计功效为 80%。</p>
 <p>代入上述参数后，可得所需的最小病例数为47。为了方便分组，我们取双数为48。接着，使用<code>T2N()</code>函数计算疫苗组所需的样本量，结果为至少2016.807，向上取整后为2020。该样本量结果与论文中的报告一致，验证了我们算法的正确性。</p>
 <div class="inline-figure"><img src="image/Screenshot%202025-07-21%20162616.png" width="100%"></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -536,41 +536,34 @@ p-value
 <h2>Reference<a class="anchor" aria-label="anchor" href="#reference"><i class="fas fa-link"></i></a>
 </h2>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-chan_exact_1998" class="csl-entry">
-Chan, Ivan S. F., and Norman R. Bohidar. <span>“Exact Power and Sample Size for Vaccine Efficacy Studies.”</span> <em>Communications in Statistics - Theory and Methods</em> 27, no. 6 (1998): 1305–22. <a href="https://doi.org/10.1080/03610929808832160">https://doi.org/10.1080/03610929808832160</a>.
-</div>
-<div id="ref-loiacono_sample_nodate" class="csl-entry">
-Loiacono, Matthew M. <em><span>SAMPLE</span> <span>SIZE</span> <span>ESTIMATION</span> <span>AND</span> <span>POWER</span> <span>CALCULATIONS</span> <span>FOR</span> <span>VACCINE</span> <span>EFFICACY</span> <span>TRIALS</span> <span>FOR</span> <span>EXCEEDINGLY</span> <span>RARE</span> <span>DISEASES</span></em>. n.d.
-</div>
-<div id="ref-mo_efficacy_2017" class="csl-entry">
-Mo, Zhaojun, Yi Mo, Mingqiang Li, et al. <span>“Efficacy and Safety of a Pentavalent Live Human-Bovine Reassortant Rotavirus Vaccine (<span>RV5</span>) in Healthy <span>Chinese</span> Infants: <span>A</span> Randomized, Double-Blind, Placebo-Controlled Trial.”</span> <em>Vaccine</em> 35, no. 43 (2017): 5897–904. <a href="https://doi.org/10.1016/j.vaccine.2017.08.081">https://doi.org/10.1016/j.vaccine.2017.08.081</a>.
-</div>
+<div id="refs" class="references csl-bib-body">
 <div id="ref-R-dplyr" class="csl-entry">
-Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. <em>Dplyr: A Grammar of Data Manipulation</em>. 2023. <a href="https://dplyr.tidyverse.org">https://dplyr.tidyverse.org</a>.
-</div>
-<div id="ref-wu_efficacy_2022" class="csl-entry">
-Wu, Zhiwei, Qingliang Li, Yan Liu, et al. <span>“Efficacy, Safety and Immunogenicity of Hexavalent Rotavirus Vaccine in <span>Chinese</span> Infants.”</span> <em>Virologica Sinica</em> 37, no. 5 (2022): 724–30. <a href="https://doi.org/10.1016/j.virs.2022.07.011">https://doi.org/10.1016/j.virs.2022.07.011</a>.
+<div class="csl-left-margin">[1] </div>
+<div class="csl-right-inline">Wickham H, François R, Henry L, et al. Dplyr: A grammar of data manipulation [Internet]. 2023. Available from: <a href="https://dplyr.tidyverse.org">https://dplyr.tidyverse.org</a>.</div>
 </div>
 <div id="ref-R-kableExtra" class="csl-entry">
-Zhu, Hao. <em>kableExtra: Construct Complex Table with Kable and Pipe Syntax</em>. 2024. <a href="http://haozhu233.github.io/kableExtra/">http://haozhu233.github.io/kableExtra/</a>.
+<div class="csl-left-margin">[2] </div>
+<div class="csl-right-inline">Zhu H. kableExtra: Construct complex table with kable and pipe syntax [Internet]. 2024. Available from: <a href="http://haozhu233.github.io/kableExtra/">http://haozhu233.github.io/kableExtra/</a>.</div>
+</div>
+<div id="ref-chan_exact_1998" class="csl-entry">
+<div class="csl-left-margin">[3] </div>
+<div class="csl-right-inline">Chan ISF, Bohidar NR. <a href="https://doi.org/10.1080/03610929808832160">Exact power and sample size for vaccine efficacy studies</a>. Communications in Statistics - Theory and Methods. 1998;27(6):1305–1322.</div>
+</div>
+<div id="ref-loiacono_sample_nodate" class="csl-entry">
+<div class="csl-left-margin">[4] </div>
+<div class="csl-right-inline">Loiacono MM. <span>SAMPLE</span> <span>SIZE</span> <span>ESTIMATION</span> <span>AND</span> <span>POWER</span> <span>CALCULATIONS</span> <span>FOR</span> <span>VACCINE</span> <span>EFFICACY</span> <span>TRIALS</span> <span>FOR</span> <span>EXCEEDINGLY</span> <span>RARE</span> <span>DISEASES</span>.</div>
+</div>
+<div id="ref-wu_efficacy_2022" class="csl-entry">
+<div class="csl-left-margin">[5] </div>
+<div class="csl-right-inline">Wu Z, Li Q, Liu Y, et al. <a href="https://doi.org/10.1016/j.virs.2022.07.011">Efficacy, safety and immunogenicity of hexavalent rotavirus vaccine in <span>Chinese</span> infants</a>. Virologica Sinica [Internet]. 2022 [cited 2025 Jul 22];37(5):724–730.</div>
+</div>
+<div id="ref-mo_efficacy_2017" class="csl-entry">
+<div class="csl-left-margin">[6] </div>
+<div class="csl-right-inline">Mo Z, Mo Y, Li M, et al. <a href="https://doi.org/10.1016/j.vaccine.2017.08.081">Efficacy and safety of a pentavalent live human-bovine reassortant rotavirus vaccine (<span>RV5</span>) in healthy <span>Chinese</span> infants: <span>A</span> randomized, double-blind, placebo-controlled trial</a>. Vaccine [Internet]. 2017 [cited 2025 Jul 22];35(43):5897–5904.</div>
 </div>
 </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
   <div class="chapter-nav">
 <div class="prev"><a href="index.html"><span class="header-section-number">1</span> 前言</a></div>
 <div class="empty"></div>

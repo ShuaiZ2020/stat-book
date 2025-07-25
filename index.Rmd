@@ -12,7 +12,7 @@ description: |
   The HTML output format for this example is bookdown::bs4_book,
   set in the _output.yml file.
 biblio-style: apalike
-csl: chicago-fullnote-bibliography.csl
+csl: journal-of-statistical-computation-and-simulation.csl
 
 ---
 

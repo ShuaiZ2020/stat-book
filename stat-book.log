@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.24)  25 JUL 2025 11:08
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.24)  25 JUL 2025 13:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1137,24 +1137,6 @@ LaTeX Font Info:    Font shape `TU/SimSun(0)/b/n' will be
 
 
 ]
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 188.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 188.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 188.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 9.00082pt on input line 188.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.00055pt on input line 188.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 188.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 8.99904pt on input line 188.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 188.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 188.
 
 Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
 (xeCJK)                
@@ -1180,8 +1162,6 @@ Overfull \hbox (10.95pt too wide) in paragraph at lines 299--300
 
 
 [4]
-
-[5]
 File: image/Screenshot 2025-07-22 173413.png Graphic file (type bmp)
 <image/Screenshot 2025-07-22 173413.png>
 
@@ -1191,7 +1171,7 @@ Overfull \hbox (10.95pt too wide) in paragraph at lines 361--362
 
 
 
-[6]
+[5]
 File: image/Screenshot 2025-07-21 162616.png Graphic file (type bmp)
 <image/Screenshot 2025-07-21 162616.png>
 
@@ -1201,11 +1181,11 @@ Overfull \hbox (10.95pt too wide) in paragraph at lines 373--374
 
 
 
+[6]
+
 [7]
 
-[8]
-
-[9] (./stat-book.aux)
+[8] (./stat-book.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2022/08/05>
@@ -1215,12 +1195,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 23081 strings out of 470473
- 464931 string characters out of 5489619
- 1121616 words of memory out of 5000000
- 51047 multiletter control sequences out of 15000+600000
- 636937 words of font info for 126 fonts, out of 8000000 for 9000
+ 23028 strings out of 470473
+ 463359 string characters out of 5489619
+ 1119616 words of memory out of 5000000
+ 51014 multiletter control sequences out of 15000+600000
+ 634000 words of font info for 103 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 108i,8n,114p,10923b,528s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,8n,114p,10923b,501s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on stat-book.pdf (9 pages).
+Output written on stat-book.pdf (8 pages).

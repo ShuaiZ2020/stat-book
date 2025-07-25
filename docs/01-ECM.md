@@ -2,7 +2,7 @@
 
 # 罕见病疫苗有效性样本量估计{-}
 
-我们首先导入后面会用到的包，后续会用到 @R-dplyr 的dplyr  的%>%管道函数和 @R-kableExtra 的kableExtra  输出表格。
+我们首先导入后面会用到的包，后续会用到的dplyr的%>%管道函数和的kableExtra输出表格[-@R-dplyr; -@R-kableExtra]。
 
 ``` r
 library(dplyr)
@@ -63,7 +63,7 @@ $$
 
 计算样本量所需的变量为$\pi_0, \pi_1, \alpha$, 期望统计功效(1-$\beta$)和安慰剂组发病率($P_1$)。
 
-详细推导过程可以看 @chan_exact_1998 和 @loiacono_sample_nodate
+详细推导过程可以看这两篇论文 [-@chan_exact_1998; -@loiacono_sample_nodate]
 
 
 ## R代码示例
@@ -110,9 +110,10 @@ T2N <- function(T_value, incidence, pi1, dropout_rate){
 
 
 ### 例1
-@chan_exact_1998 在其论文中详细阐述了exact conditional方法的理论推导，并提供了不同样本量下统计功效（power）与显著性水平（significance level）的对应表格。为验证该方法的计算准确性，我们可以调用`ect_sample_size()`函数进行实证分析。具体参数设置：病例范围33到40，$\pi_0=0.2,\pi_1=0.8, P_1=0.006, \alpha=0.025$, 目标统计功效为95%。将这些参数输入函数后，即可获得相应的样本量估计结果。
+[@chan_exact_1998] 在其论文中详细阐述了exact conditional方法的理论推导，并提供了不同样本量下统计功效（power）与显著性水平（significance level）的对应表格。为验证该方法的计算准确性，我们可以调用`ect_sample_size()`函数进行实证分析。具体参数设置：病例范围33到40，$\pi_0=0.2,\pi_1=0.8, P_1=0.006, \alpha=0.025$, 目标统计功效为95%。将这些参数输入函数后，即可获得相应的样本量估计结果。
 
-<img src="image/Screenshot 2025-07-21 155606.png" width="100%" />
+
+\includegraphics[width=1\linewidth]{image/Screenshot 2025-07-21 155606} 
 
 
 ``` r
@@ -127,66 +128,28 @@ kbl(res1$T_table)%>%
   kable_styling(bootstrap_options = "striped", full_width = F, position = "left")
 ```
 
-<table class="table table-striped" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:right;"> T </th>
-   <th style="text-align:right;"> Y_c </th>
-   <th style="text-align:right;"> power </th>
-   <th style="text-align:right;"> p-value </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 33 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 0.9139690 </td>
-   <td style="text-align:right;"> 0.0136117 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 34 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 0.9540856 </td>
-   <td style="text-align:right;"> 0.0244451 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 35 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 0.9449925 </td>
-   <td style="text-align:right;"> 0.0178969 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 36 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 0.9347919 </td>
-   <td style="text-align:right;"> 0.0129998 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 37 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 0.9653937 </td>
-   <td style="text-align:right;"> 0.0227940 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 38 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 0.9584044 </td>
-   <td style="text-align:right;"> 0.0168288 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 39 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 0.9504998 </td>
-   <td style="text-align:right;"> 0.0123313 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 40 </td>
-   <td style="text-align:right;"> 11 </td>
-   <td style="text-align:right;"> 0.9738542 </td>
-   <td style="text-align:right;"> 0.0211901 </td>
-  </tr>
-</tbody>
-</table>
+
+\begin{tabular}[t]{r|r|r|r}
+\hline
+T & Y\_c & power & p-value\\
+\hline
+33 & 8 & 0.9139690 & 0.0136117\\
+\hline
+34 & 9 & 0.9540856 & 0.0244451\\
+\hline
+35 & 9 & 0.9449925 & 0.0178969\\
+\hline
+36 & 9 & 0.9347919 & 0.0129998\\
+\hline
+37 & 10 & 0.9653937 & 0.0227940\\
+\hline
+38 & 10 & 0.9584044 & 0.0168288\\
+\hline
+39 & 10 & 0.9504998 & 0.0123313\\
+\hline
+40 & 11 & 0.9738542 & 0.0211901\\
+\hline
+\end{tabular}
 
 
 代码中的incidence 就是$P_1$， 其他参数与上面提及的保持一致。可以看到输出的表格中样本量，critical value， statistical power和p value与论文中的表格完全一致。我们打印出能够达到95% statistical power的病例数
@@ -207,7 +170,8 @@ T2N(37, incidence, pi1, dropout_rate = 0)
 ```
 
 ### HRV-三期
-<img src="image/Screenshot 2025-07-22 173413.png" width="100%" />
+
+\includegraphics[width=1\linewidth]{image/Screenshot 2025-07-22 173413} 
 
 @wu_efficacy_2022 这篇论文原本是我们希望复现样本量计算的参考文献。然而在复现过程中发现，文中并未明确给出所需的关键参数 $\pi_1$、$\alpha$ 以及期望的统计功效，因此无法准确计算所需样本量。因此，我们决定后续不再以该论文作为参考。
 
@@ -221,7 +185,8 @@ T2N(37, incidence, pi1, dropout_rate = 0)
 
 
 
-<img src="image/Screenshot 2025-07-21 162616.png" width="100%" />
+
+\includegraphics[width=1\linewidth]{image/Screenshot 2025-07-21 162616} 
 
 
 ``` r
@@ -236,84 +201,34 @@ kbl(res_rv5$T_table)%>%
   kable_styling(bootstrap_options = "striped", full_width = F, position = "left")
 ```
 
-<table class="table table-striped" style="width: auto !important; ">
- <thead>
-  <tr>
-   <th style="text-align:right;"> T </th>
-   <th style="text-align:right;"> Y_c </th>
-   <th style="text-align:right;"> power </th>
-   <th style="text-align:right;"> p-value </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 40 </td>
-   <td style="text-align:right;"> 13 </td>
-   <td style="text-align:right;"> 0.7692914 </td>
-   <td style="text-align:right;"> 0.0192387 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 41 </td>
-   <td style="text-align:right;"> 13 </td>
-   <td style="text-align:right;"> 0.7363326 </td>
-   <td style="text-align:right;"> 0.0137666 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 42 </td>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 0.8052771 </td>
-   <td style="text-align:right;"> 0.0217793 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 43 </td>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 0.7757295 </td>
-   <td style="text-align:right;"> 0.0157697 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 44 </td>
-   <td style="text-align:right;"> 15 </td>
-   <td style="text-align:right;"> 0.8362319 </td>
-   <td style="text-align:right;"> 0.0243834 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 45 </td>
-   <td style="text-align:right;"> 15 </td>
-   <td style="text-align:right;"> 0.8100042 </td>
-   <td style="text-align:right;"> 0.0178489 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 46 </td>
-   <td style="text-align:right;"> 15 </td>
-   <td style="text-align:right;"> 0.7819032 </td>
-   <td style="text-align:right;"> 0.0129480 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 47 </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 0.8396107 </td>
-   <td style="text-align:right;"> 0.0199930 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 0.8146130 </td>
-   <td style="text-align:right;"> 0.0146525 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 49 </td>
-   <td style="text-align:right;"> 17 </td>
-   <td style="text-align:right;"> 0.8650285 </td>
-   <td style="text-align:right;"> 0.0221921 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:right;"> 17 </td>
-   <td style="text-align:right;"> 0.8429717 </td>
-   <td style="text-align:right;"> 0.0164196 </td>
-  </tr>
-</tbody>
-</table>
+
+\begin{tabular}[t]{r|r|r|r}
+\hline
+T & Y\_c & power & p-value\\
+\hline
+40 & 13 & 0.7692914 & 0.0192387\\
+\hline
+41 & 13 & 0.7363326 & 0.0137666\\
+\hline
+42 & 14 & 0.8052771 & 0.0217793\\
+\hline
+43 & 14 & 0.7757295 & 0.0157697\\
+\hline
+44 & 15 & 0.8362319 & 0.0243834\\
+\hline
+45 & 15 & 0.8100042 & 0.0178489\\
+\hline
+46 & 15 & 0.7819032 & 0.0129480\\
+\hline
+47 & 16 & 0.8396107 & 0.0199930\\
+\hline
+48 & 16 & 0.8146130 & 0.0146525\\
+\hline
+49 & 17 & 0.8650285 & 0.0221921\\
+\hline
+50 & 17 & 0.8429717 & 0.0164196\\
+\hline
+\end{tabular}
 
 
 

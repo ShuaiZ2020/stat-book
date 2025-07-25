@@ -2,7 +2,7 @@
 
 # 罕见病疫苗有效性样本量估计{-}
 
-我们首先导入后面会用到的包，后续会用到 @R-dplyr 的dplyr  的%>%管道函数和 @R-kableExtra 的kableExtra  输出表格。
+我们首先导入后面会用到的包，后续会用到的dplyr的%>%管道函数和的kableExtra输出表格[-@R-dplyr; -@R-kableExtra]。
 ```{r, echo = T,warning = F, message = F}
 library(dplyr)
 library(kableExtra)
@@ -62,7 +62,7 @@ $$
 
 计算样本量所需的变量为$\pi_0, \pi_1, \alpha$, 期望统计功效(1-$\beta$)和安慰剂组发病率($P_1$)。
 
-详细推导过程可以看 @chan_exact_1998 和 @loiacono_sample_nodate
+详细推导过程可以看这两篇论文 [-@chan_exact_1998; -@loiacono_sample_nodate]
 
 
 ## R代码示例
@@ -109,7 +109,7 @@ T2N <- function(T_value, incidence, pi1, dropout_rate){
 
 
 ### 例1
-@chan_exact_1998 在其论文中详细阐述了exact conditional方法的理论推导，并提供了不同样本量下统计功效（power）与显著性水平（significance level）的对应表格。为验证该方法的计算准确性，我们可以调用`ect_sample_size()`函数进行实证分析。具体参数设置：病例范围33到40，$\pi_0=0.2,\pi_1=0.8, P_1=0.006, \alpha=0.025$, 目标统计功效为95%。将这些参数输入函数后，即可获得相应的样本量估计结果。
+[@chan_exact_1998] 在其论文中详细阐述了exact conditional方法的理论推导，并提供了不同样本量下统计功效（power）与显著性水平（significance level）的对应表格。为验证该方法的计算准确性，我们可以调用`ect_sample_size()`函数进行实证分析。具体参数设置：病例范围33到40，$\pi_0=0.2,\pi_1=0.8, P_1=0.006, \alpha=0.025$, 目标统计功效为95%。将这些参数输入函数后，即可获得相应的样本量估计结果。
 
 ```{r, echo = F, out.width="100%"}
 knitr::include_graphics('image/Screenshot 2025-07-21 155606.png')
