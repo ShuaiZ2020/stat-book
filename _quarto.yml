@@ -1,0 +1,24 @@
+project:
+  type: book
+  output-dir: docs
+book:
+  title: "临床实验生物统计学方法R语言实例"
+  author: "朱帅"
+  date: last-modified
+  chapters:
+    - index.qmd
+    - ECM.qmd
+
+bibliography: ["reference.bib", "packages.bib"]
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf: 
+    documentclass: book 
+
+editor: source
+csl: journal-of-statistical-computation-and-simulation.csl
+
